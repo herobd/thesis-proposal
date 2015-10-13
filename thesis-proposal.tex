@@ -33,6 +33,7 @@
 % prints.  It's useful, but optional.  Note that if you use latex instead of
 % pdflatex, you should change "pdftex" to "ps2pdf".
 \usepackage{graphicx}
+\graphicspath{{./images/}}
 \usepackage{float}
 \usepackage{scrextend}
 \usepackage{url}
@@ -148,7 +149,7 @@ Recurrent neural networks (RNN) do not share the same limitations as HMMs, and h
 
 
 
-Due to the limitations of current handwriting recognition methods we believe that a fully automated handwriting transcription is out of reach. We thus turn our attention to semi-automated recognition approaches, where we are still using a human to transcribe, but also some intelligent recognition technology. A semi-automated solution will outperform a fully automated system in terms of accuracy and is still far more effective than completely manual transcription. Standard CAT approaches use human feedback to correct automatic transcription in an intelligent way, such that it learns something from the corrections. An active learning approach to handwriting transcription is similar to CAT, but is not concerned about achieving human level accuracy, just better accuracy, and thus requires less human involvement~\cite{Serrano2010}. Since we wish to have a system with human comparable accuracy, thus we will focus on CAT approaches.
+Due to the limitations of current handwriting recognition methods, we believe that a fully automated handwriting transcription is out of reach. We thus turn our attention to semi-automated recognition approaches, where we are still using a human to transcribe, but also some intelligent recognition technology. A semi-automated solution will outperform a fully automated system in terms of accuracy and is still far more effective than completely manual transcription. Standard CAT approaches use human feedback to correct automatic transcription in an intelligent way, such that it learns something from the corrections. An active learning approach to handwriting transcription is similar to CAT, but is not concerned about achieving human level accuracy, just better accuracy, and thus requires less human involvement~\cite{Serrano2010}. Since we wish to have a system with human comparable accuracy, thus we will focus on CAT approaches.
 
 Toselli, et al\cite{Toselli2007} have explored the realm of CAT using the idea of user-verified prefixes. They use a fairly standard HMM recognition model as the backbone of their approach, and take advantage of the incremental nature of the Viterbi decoding algorithm. The recognition is done for a line of text and the user corrects the first error. The Viterbi is then run again, but this time using the assumption that everything occurring before the correction is correct, and thus reusing the computation up to that point. They have also explored slight variations of the same approach that enable more fluent user input with a touchpad\cite{Toselli2008}, mouse\cite{Toselli2009}, or multimodal\cite{Toselli2010} which speed up the transcription process by allowing more intuitive use interaction. See Fig.~\ref{fig:Toselli_multimodalCAT} Their approach relies on a language model to make corrections on a line when a supervision is made. This means it cannot effectively transcribe documents containing non-sentence writing, such as tables and lists, with this method. Serrano, et al also have pursued a similar approach, where the user corrects the $n$ words in which the recognition model had the least confidence\cite{Serrano2014}.
 
@@ -173,7 +174,7 @@ Rodr{\i}guez et al\cite{Rodrıguez2008} proposed a simple histogram gradient fea
 
 Recently, Aldavert et al\cite{Aldavert2015} and Almazan et al\cite{Almazan2014} have presented superior word spotting methods with rely on heuristic descriptions. Aldavert et al use the well known bag-of-visual-words method, including recent improvements from the Computer Vision community. This is a very simple, yet effective, exemplar spotting approach. Aldavert et al use Fischer vectors, which are similar to bag-of-visual-words, with spatial pyramids in addition to a special pyramids of character histograms to find a new space in training to which both strings and word images can be embedded in. This allows it to preform both string and exemplar queries as well as hybrid queries which yield excellent results.
 
-We are interested in spotting character n-grams (bi- and trigrams) rather than words. While this hasn't explicitly been done, we feel examining the performance of other methods on short words (2 to 3 letters) is instructive. Rothacker et al\cite{Rothacker2013} report $\sim$46\% and $\sim$55\% mean Average Precision (mAP), a drop by $\sim$5\% and $\sim$14\%, for two and three lettered words respectively with their segmentation free HMM based method. Fischer et al\cite{Fischer2012} report $\sim$70\% and $\sim$83\% mAP for two and three lettered words for their line segmentation dependent, character HMM based method. While neither of these numbers are very promising, Almazan et al\cite{Almazan2012} observe that sliding window approaches can frequently find false positives of short words inside other words (e.g.~finding the word ''the'' inside the word ''weather''). As this is precisely what we want to happen in n-gram spotting (we want to find groups of letters in the middle of words), we expect we should have more success spotting character n-grams than other methods in spotting short words. However, part of the poor accuracy in spotting short words is the fact that there is less information with which to discriminate; this is an obstacle we still must overcome.
+We are interested in spotting character n-grams (bi- and trigrams) rather than words. While this hasn't explicitly been done, we feel examining the performance of other methods on short words (2 to 3 letters) is instructive. Rothacker et al\cite{Rothacker2013} report $\sim$46\% and $\sim$55\% mean Average Precision (mAP), a drop by $\sim$5\% and $\sim$14\%, for two and three lettered words respectively with their segmentation free HMM based method. Fischer et al\cite{Fischer2012} report $\sim$70\% and $\sim$83\% mAP for two and three lettered words for their line segmentation dependent, character HMM based method. While neither of these numbers are very promising, Almazan et al\cite{Almazan2012} observe that sliding window approaches can frequently find false positives of short words inside other words (e.g.~finding the word ``the'' inside the word ``weather''). As this is precisely what we want to happen in n-gram spotting (we want to find groups of letters in the middle of words), we expect we should have more success spotting character n-grams than other methods in spotting short words. However, part of the poor accuracy in spotting short words is the fact that there is less information with which to discriminate; this is an obstacle we still must overcome.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -188,19 +189,15 @@ We will construct a computer assisted transcription system which will use charac
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Project Description}
 
-We will develop a character n-gram spotter, experimenting with modifying existing methods as well as trying ones based on object detection strategies from computer vision. This performance will be empirically measured.
+We will develop a character n-gram spotter, experimenting with modifying existing methods as well as trying ones based on object detection strategies from computer vision. This performance will be empirically measured. Using the results of the performance of the n-gram spotting, we will evaluate how large of a dictionary our approach is feasible for.
 
-Using the results of the performance of the n-gram spotting, we will evaluate how large of a dictionary our approach is feasible for.
-
-We then will implement a demonstrative transcription tool using the flexibility of n-gram spotting. This will largely be a proof-of-concept work to show how one might use character n-gram spotting. We anticipate its performance to good, but it may be difficult to compare to similar tools as we will be able to direct our tools paradigm differently than others.
+We then will implement a demonstrative CAT tool using the flexibility of n-gram spotting. This will largely be a proof-of-concept work to show how one might use character n-gram spotting. We anticipate its performance to good, but it may be difficult to compare to similar tools as ours will be strongest in an application that slightly different to how most others have been tested.
 
 
 \subsection{Spotting}
-Our system could be created by using any  horizontal-segmentation free exemplar based word spotting method. However, these are not optimized for the small n-grams we are dealing with.
+We require a spotting method that which can learn incrementally. Image exemplar spotting approaches are an easy way of doing this as new examples can simply become new queries. However, other trained methods may be able to be updated. There are some spotting methods which are able to do both image and string based queries\cite{Almazan2014} which would be useful for leveraging both offline training and new exemplars.
 
-We require an exemplar based method for a few reasons. One, they tend to be more accurate as the problem is simply matching images with noise. Two, it allows ad hoc identification of new n-grams from the data validated by the user based on a particular author's handwriting. The requirement for at least a horizontal segmentation free method is that it is assumed to be very difficult to segment the letters of a particular word in cursive script.
-
-There are some spotting methods which lend themselves to being able to do both exemplar and sting based queries\cite{Almazan2014}.
+Given our specific need in spotting character n-grams, we will likely have to adapt the current word spotting technology to get the performance we need. This will be a preliminary task that will provide the backbone for our CAT system.
 
 \subsection{Preprocessing}
 All documents will be have some noise reduction done. They will be deskewed, line segmented, have their text lines deslanted and have the words segmented. Word segmentation will likely have errors, but these can be corrected by users.
@@ -213,10 +210,26 @@ The system is designed to leverage to flexible nature of using character n-gram 
 
 It will begin with a set of n-gram exemplars, or trained n-gram representations obtained offline. Using these we will try to generalize the various forms of handwriting into a handful of examples for each n-gram. These will be used to begin spotting the documents. Depending on the character n-gram spotter's performance, a training step may need to precede the main execution, allowing us to gather context/author specific n-gram exemplars. 
 
-The system is broken in to tasks, some which are completed by the user, some which are completed by a server doing the computation/spotting. By including a task manager which distributes tasks, we can allow for multiple users to be working on the same set of documents simultaneously. See Fig.~\ref{fig:system_diagram} for a brief outline. The tasks to be done by the computation server are as follows:
-\\[.5cm]
+The system is broken in to tasks, some which are completed by the user, some which are completed by a server doing the computation/spotting. By including a task manager which distributes tasks, we can allow for multiple users to be working on the same set of documents simultaneously. See Fig.~\ref{fig:system_diagram} for a brief outline. The tasks to be done by the computation server are as follows and the user will be the following subsections.
+
+This method is unique in that the different user's progress will help produce more tasks, making the effort becomes very cooperative. This happens as each completed n-gram verification task will lend labels over a portion of the corpus being transcribed. This allows more possible transcriptions to be found.
+
+This bootstrapping can be done in two ways, using the labeled n-gram as a new exemplar, or using the n-gram as a refining tool to prune images returned by a previous spotting (that haven't been user-reviewed yet). The choice can be decided by evaluating the performance for spotting that particular n-gram: the user's feedback will indicate our false-positive rate, and statistics can estimate our false-negative rate. If our false-positive rate is high, we should prune, if our false-negative rate is high we should use it as another detector.
+
+The testing tool will be developed as a in-browser app, thus making it immediately cross-compatible with all devices with a modern browser. A simple Node.js server will be created to communicate with the clients and the C++ program which will be responsible for performing the actual word spotting.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.85\textwidth]{system_diagram_with_arrows}
+    \caption{The work-flow of the proposed CAT system. This can support multiple computation servers and multiple users at the same time.}
+    \label{fig:system_diagram}
+\end{figure}
+
+
+\subsubsection{Computation Server Tasks}
+
 {\setlength{\parindent}{0cm}
-\hspace{2cm} Character n-gram spotting:
+\textbf{Character n-gram spotting}
 
 \begin{addmargin}[3em]{3em}
 Select the most promising n-gram exemplar to spot. Spot that n-gram in the documents. Pass results to user for n-gram verification task.
@@ -224,28 +237,40 @@ Select the most promising n-gram exemplar to spot. Spot that n-gram in the docum
 \end{addmargin}
 
 
-Dictionary look-up:
+\textbf{Dictionary look-up}
 
 \begin{addmargin}[3em]{3em}
-When a word has roughly 50\% of its area labelled by n-grams, we create a regular expression representing what we know. This is based on the position of the n-grams in the word, using flexible wildcards to specify possible unrecognized characters and their position. If only a few words are returned by the regular expression (10 or less) we pass this to the user for the transcription selection task.
+When a word has roughly 50\% of its area labelled by n-grams, we create a regular expression representing what we know. This is based on the position of the n-grams in the word, using flexible wildcards to specify possible unrecognized characters and their position (the ``Wheel of Fortune'' game). If only a few words are returned by the regular expression (10 or less) we pass this to the user for the transcription selection task.
 \\[.5cm]
 \end{addmargin}
 
+\textbf{Incremental learning from transcription}
 
-
-
-
-The tasks presented to the user are as follows:
+\begin{addmargin}[3em]{3em}
+After the user has confirmed a transcription for a word image, we can then extract new character n-gram exemplars from the image, using the spatial information we have from the n-grams spotted in the image. These can be author specific exemplars which can greatly improve spotting for pages with the same author. How the exemplar is used will depend on the final spotting algorithm selected; it may either be used directly as a query or as means to learn new character models.
 \\[.5cm]
+\end{addmargin}
+}
 
-Character n-gram verification:
+
+\subsubsection{User Tasks}
+
+{\setlength{\parindent}{0cm}
+\textbf{Character n-gram verification} (Fig.~\ref{fig:userTask_spot})
 
 \begin{addmargin}[3em]{3em}
 The user is shown the n-gram that was spotted and highlighted segments of the images which had positive results. The user discards any false-positives. The assumption is that most should be correct, thus making it easy to pick out those not belonging to the set.
 \\[.5cm]
 \end{addmargin}
 
-Select correct transcription:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.4\textwidth]{userTask_spot}
+    \caption{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram.}
+    \label{fig:userTask_spot}
+\end{figure}
+
+\textbf{Select correct transcription} (Fig.~\ref{fig:userTask_trans})
 
 \begin{addmargin}[3em]{3em}
 The user is shown the image being transcribed and presented the list of possible transcriptions. The user either selects the correct transcription, or corrects the search by doing one or more of the following:
@@ -262,16 +287,12 @@ If a transcription is selected or entered, a letter alignment is guessed for the
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=.85\textwidth]{system_diagram_with_arrows}
-    \caption{The work-flow of the proposed CAT system. This can support multiple computation servers and multiple users at the same time.}
-    \label{fig:system_diagram}
+    \includegraphics[width=.6\textwidth]{userTask_trans}
+    \caption{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's dictionary look-up.}
+    \label{fig:userTask_trans}
 \end{figure}
 
-This method is unique in that the different user's progress will help produce more tasks, making the effort becomes very cooperative. This happens as each completed n-gram verification task will lend labels over a portion of the corpus being transcribed. This allows more possible transcriptions to be found.
 
-This bootstrapping can be done in two ways, using the labeled n-gram as a new exemplar, or using the n-gram as a refining tool to prune images returned by a previous spotting (that haven't been user-reviewed yet). The choice can be decided by evaluating the performance for spotting that particular n-gram: the user's feedback will indicate our false-positive rate, and statistics can estimate our false-negative rate. If our false-positive rate is high, we should prune, if our false-negative rate is high we should use it as another detector.
-
-The testing tool will be developed as a in-browser app, thus making it immediately cross-compatible with all devices with a modern browser. A simple Node.js server will be created to communicate with the clients and the C++ program which will be responsible for performing the actual word spotting.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Validation}
