@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesis-proposal.aux
+The style file: plainnat.bst
+Database file #1: bib.bib
+Warning--I didn't find a database entry for "icdar_segmentation"
+You've used 20 entries,
+            2773 wiz_defined-function locations,
+            748 strings with 9466 characters,
+and the built_in function-call counts, 10930 in all, are:
+= -- 990
+> -- 667
+< -- 13
++ -- 223
+- -- 203
+* -- 908
+:= -- 1658
+add.period$ -- 82
+call.type$ -- 20
+change.case$ -- 126
+chr.to.int$ -- 20
+cite$ -- 40
+duplicate$ -- 493
+empty$ -- 856
+format.name$ -- 231
+if$ -- 2359
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 18
+newline$ -- 123
+num.names$ -- 82
+pop$ -- 244
+preamble$ -- 1
+purify$ -- 107
+quote$ -- 0
+skip$ -- 388
+stack$ -- 0
+substring$ -- 379
+swap$ -- 85
+text.length$ -- 7
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 220
+warning$ -- 0
+while$ -- 82
+width$ -- 0
+write$ -- 303
+(There was 1 warning)

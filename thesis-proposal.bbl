@@ -1,0 +1,162 @@
+\begin{thebibliography}{20}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aldavert et~al.(2015)Aldavert, Rusi\={n}ol, Toledo, and
+  Llad\'{o}s]{Aldavert2015}
+David Aldavert, Mar\c{c}al Rusi\={n}ol, Ricardo Toledo, and Josep Llad\'{o}s.
+\newblock A study of bag-of-visual-words representations for handwritten
+  keyword spotting.
+\newblock \emph{International Journal on Document Analysis and Recognition
+  (IJDAR)}, 18\penalty0 (3):\penalty0 223--234, 2015.
+\newblock ISSN 1433-2833.
+\newblock \doi{10.1007/s10032-015-0245-z}.
+\newblock URL \url{http://dx.doi.org/10.1007/s10032-015-0245-z}.
+
+\bibitem[Almaz\'{a}n et~al.(2012)Almaz\'{a}n, Fern\'{a}ndez, Forn\'{e}s,
+  Llados, and Valveny]{Almazan2012}
+Jon Almaz\'{a}n, Diego Fern\'{a}ndez, Alicia Forn\'{e}s, Josep Llados, and
+  Ernest Valveny.
+\newblock A coarse-to-fine approach for handwritten word spotting in large
+  scale historical documents collection.
+\newblock In \emph{Frontiers in Handwriting Recognition (ICFHR), 2012
+  International Conference on}. IEEE, 2012.
+
+\bibitem[Almaz\'{a}n et~al.(2014)Almaz\'{a}n, Gordo, Forn\'{e}s, , and
+  Valveny]{Almazan2014}
+Jon Almaz\'{a}n, Albert Gordo, Alicia Forn\'{e}s, , and Ernest Valveny.
+\newblock Word spotting and recognition with embedded attributes.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 36\penalty0 (12):\penalty0 2552--2566, 2014.
+
+\bibitem[Bunke et~al.(2004)Bunke, Bengio, and Vinciarelli]{Bunke2004}
+Horst Bunke, Samy Bengio, and Alessandro Vinciarelli.
+\newblock Offline recognition of unconstrained handwritten texts using hmms and
+  statistical language models.
+\newblock \emph{Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 26\penalty0 (6):\penalty0 709--720, 2004.
+
+\bibitem[Clawson(2014)]{Clawson2014}
+Robert Clawson.
+\newblock Intelligent indexing: A semi-automated, trainable system for field
+  labeling.
+\newblock Master's thesis, Brigham Young University, 2014.
+\newblock URL \url{scholarsarchive.byu.edu/etd/5307/}.
+
+\bibitem[Fischer et~al.(2012)Fischer, Keller, Frinken, and Bunke]{Fischer2012}
+Andreas Fischer, Andreas Keller, Volkmar Frinken, and Horst Bunke.
+\newblock Lexicon-free handwritten word spotting using character {HMMs}.
+\newblock \emph{Pattern Recognition Letters}, 33\penalty0 (7):\penalty0
+  934--942, 2012.
+
+\bibitem[Graves et~al.(2009)Graves, Liwicki, Fernandez, Bertolami, Bunke, and
+  Schmidhuber]{Graves2009hmm}
+A.~Graves, M.~Liwicki, S.~Fernandez, R.~Bertolami, H.~Bunke, and
+  J.~Schmidhuber.
+\newblock A novel connectionist system for unconstrained handwriting
+  recognition.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 31\penalty0 (5):\penalty0 855--868, 2009.
+
+\bibitem[Lavrenko et~al.(2004)Lavrenko, Rath, and Manmatha]{GW}
+V.~Lavrenko, T.~M. Rath, and R.~Manmatha.
+\newblock Holistic word recognition for handwritten historical documents.
+\newblock In \emph{Proc. DIAL 2004}, pages 278--287. IEEE, 2004.
+
+\bibitem[Marti and Bunke(2002)]{IAM}
+U.~Marti and H.~Bunke.
+\newblock The {IAM}-database: An english sentence database for off-line
+  handwriting recognition.
+\newblock \emph{Int. Journal on Document Analysis and Recognition}, 5:\penalty0
+  39--46, 2002.
+
+\bibitem[Marti and Bunke(2001)]{Marti2001}
+U.V. Marti and Horst Bunke.
+\newblock Using a statistical language model to improve the performance of an
+  hmm-based cursive handwriting recognition system.
+\newblock \emph{International journal of Pattern Recognition and Artificial
+  intelligence}, 14\penalty0 (1):\penalty0 65--90, 2001.
+
+\bibitem[Rath and Manmatha(2003)]{Rath2003}
+Toni~M. Rath and Raghavan Manmatha.
+\newblock Features for word spotting in historical manuscripts.
+\newblock In \emph{Proceedings Document Analysis and Recognition}, 2003.
+
+\bibitem[Rodrıguez. and Perronnin(2008)]{Rodrıguez2008}
+Jos\'{e}~A. Rodrıguez. and Florent Perronnin.
+\newblock Local gradient histogram features for word spotting in unconstrained
+  handwritten documents.
+\newblock In \emph{Int. Conf. on Frontiers in Handwriting Recognition}, 2008.
+
+\bibitem[Romero et~al.(2009)Romero, Toselli, Rodriguez, and Vidal]{Toselli2009}
+V.~Romero, A.H. Toselli, L.~Rodriguez, and E.~Vidal.
+\newblock Using mouse feedback in computer assisted transcription of
+  handwritten text images.
+\newblock In \emph{Proceedings of ICDAR}, pages 96--100. IEEE, 2009.
+
+\bibitem[Rothacker et~al.(2013)Rothacker, Rusi{\~{n}ol}, and
+  Fink]{Rothacker2013}
+Leonard Rothacker, Mar\c{c}al Rusi{\~{n}ol}, and Gernot~A. Fink.
+\newblock Bag-of-features hmms for segmentation-free word spotting in
+  handwritten documents.
+\newblock In \emph{Proc. ICDAR 2013}, pages 1305--1309. IEEE, 2013.
+
+\bibitem[S\'{a}nchez et~al.(2015)S\'{a}nchez, Toselli, Romero, and
+  Vidal]{icdarComp2015}
+Joan~Andreu S\'{a}nchez, Alejandro~H. Toselli, Ver\'{o}nica Romero, and Enrique
+  Vidal.
+\newblock Icdar 2015 competition htrts: Handwritten text recognition on the
+  transcriptorium dataset.
+\newblock In \emph{Proceedings of ICDAR}, 2015.
+\newblock URL \url{icdar.org/proceedings}.
+
+\bibitem[Serrano et~al.(2010)Serrano, Gim{\'e}nez, Sanchis, and
+  Juan]{Serrano2010}
+Nicol\'{a}s Serrano, Adri\`{a} Gim{\'e}nez, Albert Sanchis, and Alfons Juan.
+\newblock Active learning strategies for handwritten text transcription.
+\newblock In \emph{International Conference on Multimodal Interfaces and the
+  Workshop on Machine Learning for Multimodal Interaction}, ICMI-MLMI '10,
+  pages 48:1--48:4, New York, NY, USA, 2010. ACM.
+\newblock ISBN 978-1-4503-0414-6.
+\newblock \doi{10.1145/1891903.1891962}.
+\newblock URL \url{http://doi.acm.org/10.1145/1891903.1891962}.
+
+\bibitem[Serrano et~al.(2014)Serrano, Gim\'{e}nez, Civera, Sanchis, and
+  Juan]{Serrano2014}
+Nicol\'{a}s Serrano, Adri\`{a} Gim\'{e}nez, Jorge Civera, Alberto Sanchis, and
+  Alfons Juan.
+\newblock Interactive handwriting recognition with limited user effort.
+\newblock \emph{International Journal on Document Analysis and Recognition
+  (IJDAR)}, 17\penalty0 (1):\penalty0 47--59, 2014.
+\newblock ISSN 1433-2833.
+\newblock \doi{10.1007/s10032-013-0204-5}.
+\newblock URL \url{http://dx.doi.org/10.1007/s10032-013-0204-5}.
+
+\bibitem[Toselli et~al.(2007)Toselli, Romero, Rodriguez, and
+  Vidal]{Toselli2007}
+A.H. Toselli, V.~Romero, L.~Rodriguez, and E.~Vidal.
+\newblock Computer assisted transcription of handwritten text images.
+\newblock In \emph{Proceedings of ICDAR}, pages 944--948. IEEE, 2007.
+
+\bibitem[Toselli et~al.(2008)Toselli, Romero, and Vidal]{Toselli2008}
+AlejandroH. Toselli, Ver\'{o}nica Romero, and Enrique Vidal.
+\newblock Computer assisted transcription of text images and multimodal
+  interaction.
+\newblock In Andrei Popescu-Belis and Rainer Stiefelhagen, editors,
+  \emph{Machine Learning for Multimodal Interaction}, volume 5237 of
+  \emph{Lecture Notes in Computer Science}, pages 296--308. Springer Berlin
+  Heidelberg, 2008.
+\newblock ISBN 978-3-540-85852-2.
+\newblock \doi{10.1007/978-3-540-85853-9_27}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-540-85853-9_27}.
+
+\bibitem[Vinciarelli(2003)]{sayres}
+Alessandro Vinciarelli.
+\newblock \emph{Offline Cursive Handwriting: From Word To Text Recognition}.
+\newblock PhD thesis, IDIAP, 2003.
+\newblock URL \url{infoscience.epfl.ch/record/82879}.
+
+\end{thebibliography}
