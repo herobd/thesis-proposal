@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.16)  12 OCT 2015 21:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.16)  13 OCT 2015 20:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -96,9 +96,30 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen113
+\captionmargin@=\dimen114
+\captionwidth=\dimen115
+\caption@tempdima=\dimen116
+\caption@indent=\dimen117
+\caption@parindent=\dimen118
+\caption@hangindent=\dimen119
+)
+\c@ContinuedFloat=\count91
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count92
+\c@subtable=\count93
+)
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count91
+\c@float@type=\count94
 \float@exts=\toks16
 \float@box=\box26
 \@float@everytoks=\toks17
@@ -178,14 +199,14 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen113
-\Hy@linkcounter=\count92
-\Hy@pagecounter=\count93
+\@linkdim=\dimen120
+\Hy@linkcounter=\count95
+\Hy@pagecounter=\count96
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count94
+\Hy@SavedSpaceFactor=\count97
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -201,12 +222,12 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count95
+\c@Hy@tempcnt=\count98
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen114
-\Fld@menulength=\count96
-\Field@Width=\dimen115
-\Fld@charsize=\dimen116
+\XeTeXLinkMargin=\dimen121
+\Fld@menulength=\count99
+\Field@Width=\dimen122
+\Fld@charsize=\dimen123
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -216,17 +237,17 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count97
-\c@Item=\count98
-\c@Hfootnote=\count99
+\Hy@abspage=\count100
+\c@Item=\count101
+\c@Hfootnote=\count102
 )
 
 Package hyperref Message: Driver: hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count100
-\c@bookmark@seq@number=\count101
+\Fld@listcount=\count103
+\c@bookmark@seq@number=\count104
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
@@ -240,7 +261,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip52
 \bibsep=\skip53
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count102
+\c@NAT@ctr=\count105
 )
 (/usr/share/texlive/texmf-dist/tex/latex/hypernat/hypernat.sty
 Package: hypernat 2001/07/09 v1.0b hyperref and natbib compatibility (jb)
@@ -248,20 +269,20 @@ Package: hypernat 2001/07/09 v1.0b hyperref and natbib compatibility (jb)
 (./thesis-proposal.aux)
 \openout1 = `thesis-proposal.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -299,16 +320,16 @@ LaTeX Font Info:    ... okay on input line 116.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count103
-\scratchdimen=\dimen117
+\scratchcounter=\count106
+\scratchdimen=\dimen124
 \scratchbox=\box28
-\nofMPsegments=\count104
-\nofMParguments=\count105
+\nofMPsegments=\count107
+\nofMParguments=\count108
 \everyMPshowfont=\toks18
-\MPscratchCnt=\count106
-\MPscratchDim=\dimen118
-\MPnumerator=\count107
-\makeMPintoPDFobject=\count108
+\MPscratchCnt=\count109
+\MPscratchDim=\dimen125
+\MPnumerator=\count110
+\makeMPintoPDFobject=\count111
 \everyMPtoPDFconversion=\toks19
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -325,8 +346,12 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 116.
+Package hyperref Info: Link coloring OFF on input line 118.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -334,11 +359,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count109
+\c@section@level=\count112
 )
-LaTeX Info: Redefining \ref on input line 116.
-LaTeX Info: Redefining \pageref on input line 116.
-LaTeX Info: Redefining \nameref on input line 116.
+LaTeX Info: Redefining \ref on input line 118.
+LaTeX Info: Redefining \pageref on input line 118.
+LaTeX Info: Redefining \nameref on input line 118.
 
 (./thesis-proposal.out) (./thesis-proposal.out)
 \@outlinefile=\write3
@@ -355,7 +380,7 @@ File: ./images/wheel_of_fortune_example.png Graphic file (type png)
 
 <use ./images/wheel_of_fortune_example.png>
 Package pdftex.def Info: ./images/wheel_of_fortune_example.png used on input li
-ne 135.
+ne 137.
 (pdftex.def)             Requested size: 117.43875pt x 62.79694pt.
 
 
@@ -363,27 +388,27 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package natbib Warning: Citation `icdar_segmentation' on page 1 undefined on in
-put line 144.
+put line 146.
 
 [1
 
 ]
 
 Package natbib Warning: Citation `Toselli2010' on page 2 undefined on input lin
-e 154.
+e 156.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 154.
+(Font)              <10.95> on input line 156.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 154.
+(Font)              <8> on input line 156.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 154.
+(Font)              <6> on input line 156.
 <./images/Toselli_multimodalCAT.png, id=95, 837.1275pt x 261.97874pt>
 File: ./images/Toselli_multimodalCAT.png Graphic file (type png)
 
 <use ./images/Toselli_multimodalCAT.png>
 Package pdftex.def Info: ./images/Toselli_multimodalCAT.png used on input line 
-158.
+160.
 (pdftex.def)             Requested size: 446.26582pt x 139.65556pt.
 
 
@@ -391,64 +416,86 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [2 <./images/wheel_of_fortune_example.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 165.
+(Font)              <9> on input line 167.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 165.
- [3 <./images/Toselli_multimodalCAT.png>] [4] [5]
-<./images/system_diagram_with_arrows.png, id=158, 953.5625pt x 693.59125pt>
+(Font)              <5> on input line 167.
+
+<./images/ii_ex_a.png, id=116, 219.26718pt x 152.92332pt>
+File: ./images/ii_ex_a.png Graphic file (type png)
+
+<use ./images/ii_ex_a.png>
+Package pdftex.def Info: ./images/ii_ex_a.png used on input line 173.
+(pdftex.def)             Requested size: 216.09045pt x 150.70618pt.
+
+<./images/ii_ex_b.png, id=117, 218.68903pt x 152.92332pt>
+File: ./images/ii_ex_b.png Graphic file (type png)
+
+<use ./images/ii_ex_b.png>
+Package pdftex.def Info: ./images/ii_ex_b.png used on input line 179.
+(pdftex.def)             Requested size: 216.09045pt x 151.1052pt.
+ [3 <./images/Toselli_multimodalCAT.png> <./images/ii_ex_a.png> <./images/ii_ex
+_b.png>] [4] [5]
+<./images/system_diagram_with_arrows.png, id=163, 953.5625pt x 693.59125pt>
 File: ./images/system_diagram_with_arrows.png Graphic file (type png)
 
 <use ./images/system_diagram_with_arrows.png>
 Package pdftex.def Info: ./images/system_diagram_with_arrows.png used on input 
-line 223.
+line 242.
 (pdftex.def)             Requested size: 399.29463pt x 290.4385pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 235--237
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 243--245
+ [6 <./images/system_diagram_with_arrows.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 254--256
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--252
-
- []
-
-[6 <./images/system_diagram_with_arrows.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 262--264
 
  []
 
-<./images/userTask_spot.png, id=165, 770.88pt x 1027.84pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--271
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 281--283
+
+ []
+
+<./images/userTask_spot.png, id=172, 770.88pt x 1027.84pt>
 File: ./images/userTask_spot.png Graphic file (type png)
 
 <use ./images/userTask_spot.png>
-Package pdftex.def Info: ./images/userTask_spot.png used on input line 268.
+Package pdftex.def Info: ./images/userTask_spot.png used on input line 287.
 (pdftex.def)             Requested size: 187.89914pt x 250.52911pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 278.
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 297.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 278.
- [7 <./images/userTask_spot.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 283--285
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 297.
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--304
 
  []
 
-<./images/userTask_trans.png, id=175, 1027.84pt x 770.88pt>
+[7] <./images/userTask_trans.png, id=180, 1027.84pt x 770.88pt>
 File: ./images/userTask_trans.png Graphic file (type png)
 
 <use ./images/userTask_trans.png>
-Package pdftex.def Info: ./images/userTask_trans.png used on input line 290.
+Package pdftex.def Info: ./images/userTask_trans.png used on input line 309.
 (pdftex.def)             Requested size: 281.85587pt x 211.38687pt.
- [8 <./images/userTask_trans.png>]
-(./thesis-proposal.bbl [9]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8 <./images/userTask_spot.png>] (./thesis-proposal.bbl [9 <./images/userTask_t
+rans.png>]
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ± in font cmr10!
  [10]) [11] [12
@@ -457,27 +504,27 @@ Missing character: There is no ± in font cmr10!
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 330.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 330.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 349.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 349.
 (./thesis-proposal.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 330.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 330.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 349.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 349.
 Package rerunfilecheck Info: File `thesis-proposal.out' has not changed.
 (rerunfilecheck)             Checksum: 17DC7D2FE8059EFF1072DB9F29A89435;829.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 330.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 349.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 328 (\begingroup)
+### semi simple group (level 1) entered at line 347 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 6825 strings out of 494985
- 103328 string characters out of 6180356
- 208519 words of memory out of 5000000
- 9913 multiletter control sequences out of 15000+600000
+ 7887 strings out of 494985
+ 122801 string characters out of 6180356
+ 227055 words of memory out of 5000000
+ 10964 multiletter control sequences out of 15000+600000
  8885 words of font info for 32 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 36i,8n,32p,1321b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,8n,38p,1321b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
@@ -489,10 +536,10 @@ nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmtt9.pfb>
-Output written on thesis-proposal.pdf (14 pages, 508875 bytes).
+Output written on thesis-proposal.pdf (14 pages, 2299300 bytes).
 PDF statistics:
- 265 PDF objects out of 1000 (max. 8388607)
- 225 compressed objects within 3 object streams
- 57 named destinations out of 1000 (max. 500000)
- 146 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 272 PDF objects out of 1000 (max. 8388607)
+ 228 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 
