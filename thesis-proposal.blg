@@ -4,45 +4,45 @@ The top-level auxiliary file: thesis-proposal.aux
 The style file: plainnat.bst
 Database file #1: bib.bib
 Warning--I didn't find a database entry for "icdar_segmentation"
-You've used 20 entries,
+You've used 22 entries,
             2773 wiz_defined-function locations,
-            748 strings with 9466 characters,
-and the built_in function-call counts, 10930 in all, are:
-= -- 990
-> -- 667
-< -- 13
-+ -- 223
-- -- 203
-* -- 908
-:= -- 1658
-add.period$ -- 82
-call.type$ -- 20
-change.case$ -- 126
-chr.to.int$ -- 20
-cite$ -- 40
-duplicate$ -- 493
-empty$ -- 856
-format.name$ -- 231
-if$ -- 2359
+            761 strings with 9788 characters,
+and the built_in function-call counts, 12158 in all, are:
+= -- 1103
+> -- 736
+< -- 14
++ -- 246
+- -- 224
+* -- 1011
+:= -- 1833
+add.period$ -- 89
+call.type$ -- 22
+change.case$ -- 139
+chr.to.int$ -- 22
+cite$ -- 44
+duplicate$ -- 549
+empty$ -- 956
+format.name$ -- 254
+if$ -- 2632
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 18
-newline$ -- 123
-num.names$ -- 82
-pop$ -- 244
+missing$ -- 20
+newline$ -- 133
+num.names$ -- 90
+pop$ -- 270
 preamble$ -- 1
-purify$ -- 107
+purify$ -- 118
 quote$ -- 0
-skip$ -- 388
+skip$ -- 434
 stack$ -- 0
-substring$ -- 379
-swap$ -- 85
-text.length$ -- 7
+substring$ -- 446
+swap$ -- 99
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 220
+type$ -- 242
 warning$ -- 0
-while$ -- 82
+while$ -- 91
 width$ -- 0
-write$ -- 303
+write$ -- 330
 (There was 1 warning)

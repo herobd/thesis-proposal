@@ -168,13 +168,13 @@ Robert Clawson\cite{Clawson2014}\footnote{You can view a short demo and explanat
 
 \begin{figure}[h]
     \centering
-    \begin{subfigure}[t]{0.49\textwidth}
+    \begin{subfigure}[t]{0.46\textwidth}
     		\centering
     		\includegraphics[width=\textwidth]{ii_ex_a}
     		\caption{A small window shows the user matching words later in the column. The user can get rid of bad matches.}
     	\end{subfigure}
     	~
-    	\begin{subfigure}[t]{0.49\textwidth}
+    	\begin{subfigure}[t]{0.46\textwidth}
     		\centering
     		\includegraphics[width=\textwidth]{ii_ex_b}
     		\caption{The matched words are given the same label when entered.}
@@ -317,11 +317,16 @@ The n-gram spotting methods will be empirically tested using well known datasets
 
 \subsection{User Study}
 
-The transcription system must be validated with a user study as it's goal is to be a more effective crowdsourcing method for transcription. It is not purely intended to be faster (indeed, it may not be faster than other computer assisted transcription methods), but more modular, allowing for work to be broken up into smaller pieces, and more enjoyable to use. It clearly achieves modularity in design, but we want to see how fast it is and get user feedback to see if it is something people would enjoy using.
+Our CAT system must be validated with a user study as it's goal is to be a more effective crowdsourcing method for transcription. It is not purely intended to be faster (indeed, it may not be faster than other computer assisted transcription methods), but more modular, allowing for work to be broken up into smaller pieces, and more enjoyable to use. It clearly achieves modularity in design, but we want to see how fast it is and get user feedback to see if it is something people would enjoy using.
 
-Most other computer assisted transcription methods rely on a more fully automated transcription upfront and report performance measures in terms of word error rate or effort reduction, which are measures of how many words the user had to correct. While our users will primarily be doing corrections as well, they will very different types of corrections (taps and swipes instead of typing). Thus it would be difficult to compare these other methods to our proposed method using the previously authors' metrics.
+Most other computer assisted transcription methods rely on a more fully automated transcription upfront and report performance measures in terms of word error rate or effort reduction, which are measures of how many words the user had to correct. While our users will primarily be doing corrections as well, they will very different types of corrections (taps and swipes instead of typing). Thus it would be difficult to compare these other methods to our proposed method using the previously authors' metrics, though they still may prove to be useful.
 
-We propose doing a user study which would involve having a volunteer use the system for some amount of time and then completing a survey about their experience. As the system is designed to be parallel, we will likely simulate what it would be like with other users on the system, as it would be difficult to get a synchronized group of testers. This will likely be done by completing a number of spotting verification tasks, and possibly transcription selection tasks, prior to having the users begin.
+We propose doing a user study which would involve having a volunteer\footnote{Recruiting volunteers can be aided by using Robert Clawson's volunteer testers list as a starting place. The rest will be gathered via on-campus flyers and personal connections.} use the system for about 5-10 minutes on their own device at their own convenience. This is probably the easiest way to get a large number of participants and a varying degree of experience transcribing documents among the volunteers. To encourage use on more platforms, so we get a broader survey, the study will encourage users to use tablets and phones.
+We will track what device they use, how many tasks they complete, how long it takes them to complete tasks, and errors they make, in addition to having the volunteers complete a short survey about their experience.
+
+Given the flexibility of the system, we would like to test it on two different document types: a regular written text like the George Washington\cite{GW} or the Jennie Leavitt Smith\cite{Smith} dataset, and a structured dataset such as census or marriage records. This will provide us with some comparison to Toselli's CAT approaches (which work on corpora similar to the George Washington dataset) and Clawson's CAT (which works on tabular documents).
+
+It will be difficult to get a synchronized group of testers to explore the parallel nature of our method. Instead, we will complete a number of spotting verification tasks, and possibly transcription selection tasks, prior to having the users begin. These can then be fed to the system during a user test to simulate having other users on the system, although it may suffice to simply feed them the the system prior to the user interacting.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
