@@ -89,9 +89,7 @@
 
 \documentabstract{%
 % The proposal abstract should be 1 to 2 paragraphs.
-TODO
-
-Note that there is a blank line between paragraphs, here.
+Computer assisted transcription (CAT) for handwritten documents has emerged as a way to reduce man-hours spent transcribing documents by leveraging handwriting recognition technology in concert with humans' efforts. We propose that a highly modular and parallelizable CAT method can be created by leveraging subword spotting. Rather than attempting to recognize the text as a whole, we will spot common character n-grams in the document images. From this partial transcription information and user oversight the system will begin to infer transcriptions. We will validate the proposed system with a series of user studies.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,10 +197,10 @@ We are interested in spotting character n-grams (bi- and trigrams) rather than w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Thesis Statement}
 
-Leveraging straight forward task of character n-gram spotting, we will construct a computer assisted transcription system, focusing on historical documents with limited vocabulary. Our system will use human interaction that is limited to small tasks, which are far easier to complete than typing.
-\\
-Alternate:
-\\
+Leveraging the straight-forward task of character n-gram spotting, we will construct a computer assisted transcription system, focusing on historical documents with limited vocabulary. Our system will use human interaction that is limited to small tasks, which are far easier to complete than typing.
+\\\\
+ALTERNATE:
+\\\\
 We will construct a computer assisted transcription system which will use character n-gram spotting to create an incomplete transcription of a document. Small tasks completed by users will guide the system to complete the transcription with high accuracy.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -283,7 +281,7 @@ The user is shown the n-gram that was spotted and highlighted segments of the im
 \begin{figure}[h]
     \centering
     \includegraphics[width=.4\textwidth]{userTask_spot}
-    \caption{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram.}
+    \caption{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.}
     \label{fig:userTask_spot}
 \end{figure}
 
@@ -309,7 +307,15 @@ If a transcription is selected or entered, a letter alignment is guessed for the
     \label{fig:userTask_trans}
 \end{figure}
 
+\subsection{Preliminary Work}
 
+\subsubsection{Subword Spotting}
+We have begun testing state-of-the-art word spotting methods under the application of spotting bigrams and trigrams within words. Our best results so far have been Almazan et al\cite{Almazan2014}, which achieved 49\% mAP spotting bigrams and 67\% mAP spotting trigrams in the George Washington dataset.
+
+\subsubsection{System Simulation}
+In an attempt to justify our method, we created a simulation to find how many tasks would need to be completed by users if we were transcribing a given corpus. This simulation takes a number of parameters: a recall rate for a imaginary subword spotting method, a rough confidence level for counting the number of unrecognized characters in a word, and a cut off for the number of possible transcriptions a word must be narrowed to before counting the word as transcribed (the real system would send a transcription selection task to the user, but we don't feel the need to simulate this). We ignore the precision of our imaginary spotting method as all spotting is verified by the user, so given no user error, it will have 100\% precision. However, the recall of the system will be balanced with how much work the user has to do in these tasks; this is important in our selection/development of a subword spotting method, but not to our simulation. We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. The recall rates we select are based on what we think might be reasonable given the  results described above and further improvements which could be made to created a better subword spotting system.
+
+PUT GRAPHS HERE
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Validation}
@@ -327,6 +333,7 @@ We will track what device they use, how many tasks they complete, how long it ta
 Given the flexibility of the system, we would like to test it on two different document types: a regular written text like the George Washington\cite{GW} or the Jennie Leavitt Smith\cite{Smith} dataset, and a structured dataset such as census or marriage records. This will provide us with some comparison to Toselli's CAT approaches (which work on corpora similar to the George Washington dataset) and Clawson's CAT (which works on tabular documents).
 
 It will be difficult to get a synchronized group of testers to explore the parallel nature of our method. Instead, we will complete a number of spotting verification tasks, and possibly transcription selection tasks, prior to having the users begin. These can then be fed to the system during a user test to simulate having other users on the system, although it may suffice to simply feed them the the system prior to the user interacting.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
