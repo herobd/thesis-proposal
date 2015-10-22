@@ -1,0 +1,39 @@
+.49 current recall rate for bigrams
+.67 current recall rate for trigrams
+
+99171 word dictionary: /usr/share/dict/words
+118619 word dic: wordsEn.txt
+32153 word dic: 6of12.txt
+
+test 0,1,2 confidence
+
+1000 iteration max 
+
+
+
+best
+out of vocabulary = 947
+spot 0: 3.0658436214% transcribed (3.80782008689% w/o OoV)
+spot 25: 29.6090534979% transcribed (36.7748530539% w/o OoV)
+spot 50: 42.5514403292% transcribed (52.8494761053% w/o OoV)
+spot 75: 49.1152263374% transcribed (61.0017889088% w/o OoV)
+spot 100: 55.4938271605% transcribed (68.9240991567% w/o OoV)
+spot 125: 67.3251028807% transcribed (83.6187068745% w/o OoV)
+spot 150: 72.0781893004% transcribed (89.5221058012% w/o OoV)
+spot 175: 74.3004115226% transcribed (92.2821364682% w/o OoV)
+spot 200: 76.5843621399% transcribed (95.1188346537% w/o OoV)
+spot 225: 80.2057613169% transcribed (99.6166624074% w/o OoV)
+spot 250: 81.8106995885% transcribed (101.610017889% w/o OoV)
+spot 275: 82.304526749% transcribed (102.223358037% w/o OoV)
+spot 300: 83.0452674897% transcribed (103.14336826% w/o OoV)
+spot 325: 84.7942386831% transcribed (105.315614618% w/o OoV)
+spot 350: 85.5761316872% transcribed (106.286736519% w/o OoV)
+spot 375: 85.8024691358% transcribed (106.567850754% w/o OoV)
+spot 400: 86.1934156379% transcribed (107.053411705% w/o OoV)
+spot 425: 86.975308642% transcribed (108.024533606% w/o OoV)
+spot 450: 87.366255144% transcribed (108.510094557% w/o OoV)
+spot 475: 87.5308641975% transcribed (108.714541273% w/o OoV)
+spot 500: 87.633744856% transcribed (108.84232047% w/o OoV)
+spot 525: 88.0041152263% transcribed (109.302325581% w/o OoV)
+never hit 90
+sim/SIM_small_c0_100_bi.out
