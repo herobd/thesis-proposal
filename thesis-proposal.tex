@@ -128,14 +128,14 @@ The transcription of handwritten historical documents is a service needed by org
 
 We have viewed this particularly from the perspective of FamilySearch's volunteer indexing program. Having a better method of transcribing, which is more effective and pleasant to use, would  draw more volunteers to the program while increasing the productivity of the volunteers. Our transcription paradigm reduces transcription to simple short tasks that could easily be completed by a casual user. It additionally makes it easier to bypass difficult parts of a document, allowing someone else to decipher it. Our paradigm also lends itself to a mobile environment, as it is very adaptable to a small screen and doesn't require typing.
 
-We propose a recognition technique which relies on the key idea that if we can recognize only parts of text, the missing information can be implied by use of a dictionary and language model. This can be compared to the well known game ``Wheel of Fortune'' where players are given a handful of letters, their placement in a phrase/word and a category to aid their guessing. See Fig.~\ref{fig:wheel_of_fortune_example} for an example. Can you fill in the blanks? Is it easier if you know they are names?
+We propose a recognition technique which relies on the key idea that if we can recognize only parts of text, the missing information can be implied by use of a lexicon and language model. This can be compared to the well known game ``Wheel of Fortune'' where players are given a handful of letters, their placement in a phrase/word and a category to aid their guessing. See Fig.~\ref{fig:wheel_of_fortune_example} for an example. Can you fill in the blanks? Is it easier if you know they are names?
 
-In our method, a partial recognition (the known letters of the ``game'') would be achieved by spotting frequently occurring character n-grams in handwritten documents (where n is 2 or 3). Character n-grams are useful as they occur with greater frequency than words, and are more distinguishable than individual letters. With this technique, a parallel CAT system could be constructed which allows a computer and multiple humans to work in concert to transcribe a corpus. This system particularly relies on very minimalistic human input (typically selecting things).
+In our method, a partial recognition (the known letters of the ``game'') would be achieved by spotting frequently occurring character n-grams in handwritten documents. Character n-grams are simply groups of n consecutive characters, such as ``ar'' or ``ing'' (our work will be particularly using bigrams and possibly trigrams); all words can be viewed as being made of a set of character n-grams. Character n-grams are useful as they occur with far greater frequency than individual words, and are more distinguishable than individual letters. With this technique, a parallel CAT system could be constructed which allows a computer and multiple humans to work in concert to transcribe a corpus. This system particularly relies on very minimalistic human input (typically selecting things).
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.25\textwidth]{wheel_of_fortune_example}
-    \caption{These are two words with a handful of letters left out. It is not hard to guess the correct words, especially if told these are names. A computer, with access to a dictionary, can be far more effective at this guessing game than a human.}
+    \caption{These are two words with a handful of letters left out. It is not hard to guess the correct words, especially if told these are names. A computer, with access to a lexicon, can be far more effective at this guessing game than a human.}
     \label{fig:wheel_of_fortune_example}
 \end{figure}
 
@@ -205,22 +205,15 @@ We are interested in spotting character n-grams (bi- and trigrams) rather than w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Thesis Statement}
 
-Leveraging the straight-forward task of character n-gram spotting, we will construct a computer assisted transcription system, focusing on historical documents with limited vocabulary. Our system will use human interaction that is limited to small tasks, which are far easier to complete than typing.
-\\\\
-NEW:
-\\\\
-Spotting commonly occurring character n-grams in handwritten text documents 
-\\\\
-ALTERNATE:
-\\\\
-We will construct a computer assisted transcription system which will use character n-gram spotting to create an incomplete transcription of a document. Small tasks completed by users will guide the system to complete the transcription with high accuracy.
+
+We will construct a computer assisted transcription system for handwritten documents which will partially transcribe words by completing the easier task of spotting common character n-grams. These partial transcriptions permit a constrained lexicon look-up from which a user can select the correct transcription. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Project Description}
 
-We will develop a character n-gram spotter, experimenting with modifying existing methods as well as trying ones based on object detection strategies from computer vision. This performance will be empirically measured. Using the results of the performance of the n-gram spotting, we will evaluate how large of a dictionary our approach is feasible for.
+We will develop a character n-gram spotter, experimenting with modifying existing methods as well as trying ones based on object detection strategies from computer vision. This performance will be empirically measured. Using the results of the performance of the n-gram spotting, we will evaluate the size of lexicon for which our approach will be feasible.
 
-We then will implement a demonstrative CAT tool using the flexibility of n-gram spotting. This will largely be a proof-of-concept work to show how one might use character n-gram spotting. We anticipate its performance to good, but it may be difficult to compare to similar tools as ours will be strongest in an application that slightly different to how most others have been tested.
+We then will implement a demonstrative CAT tool using the flexibility of n-gram spotting. This will largely be a proof-of-concept work to show how one might use character n-gram spotting. We anticipate its performance to be good, but it may be difficult to compare to similar tools as ours will be strongest in an application that is slightly different from how most others have been tested.
 
 
 \subsection{Spotting}
@@ -229,22 +222,23 @@ We require a spotting method that which can learn incrementally. Image exemplar 
 Given our specific need in spotting character n-grams, we will likely have to adapt the current word spotting technology to get the performance we need. This will be a preliminary task that will provide the backbone for our CAT system.
 
 \subsection{Preprocessing}
-All documents will be have some noise reduction done. They will be deskewed, line segmented, have their text lines deslanted and have the words segmented. Word segmentation will likely have errors, but these can be corrected by users.
+All documents will be have preprcessing done to reduce noise in the image, deskew the image, segment lines, have the text lines deslanted and have the words segmented. Word segmentation will likely have errors, but these can be corrected by users.
 
-\subsection{Dictionary}
-Dictionary look-ups with wildcards is a well studied problem. An approach which would be well suited to our needs is n-gram indexing, in which each n-gram has all words which contain it indexed to it. Then a search is simply an intersection of all the indexes for the n-grams in the query.
+\subsection{Lexicon}
+Lexicon look-ups with wildcards is a well studied problem. An approach which would be well suited to our needs is n-gram indexing, in which each n-gram has all words which contain it indexed to it. Then a search is simply an intersection of all the indexes for the n-grams in the query.
 
 \subsection{Tool}
-The system is designed to leverage to flexible nature of using character n-gram spotting to perform word completion. It is designed to be interactive with multiple asynchronous users, using user feedback to improve its spotting. It is modularized into a handful of program and user tasks.
+The system is designed to leverage the flexibility of character n-gram spotting to create partial transcriptions. This flexibility largely comes from it's parallelizable nature; individual spotting tasks, and transcription tasks, are not dependant on one another. This allows an interactive design with multiple asynchronous users. Additionally, we can exploit user feedback to improve spotting.
 
-It will begin with a set of n-gram exemplars, or trained n-gram representations obtained offline. Using these we will try to generalize the various forms of handwriting into a handful of examples for each n-gram. These will be used to begin spotting the documents. Depending on the character n-gram spotter's performance, a training step may need to precede the main execution, allowing us to gather context/author specific n-gram exemplars. 
+We will begin by training our spotting method so that it can spot n-grams in most types of handwriting with a reasonable accuracy. This will be used to begin spotting the documents. Depending on this character n-gram spotter's performance, a training step may need to precede the main execution, allowing the spotting method to gather context/author specific n-gram exemplars. 
 
-The system is broken into tasks, some which are completed by the user, some which are completed by a server doing the computation/spotting. By including a task manager which distributes tasks, we can allow for multiple users to be working on the same set of documents simultaneously. See Fig.~\ref{fig:system_diagram} for a brief outline. The tasks to be done by the computation server and the user will be the following subsections.
+The system is broken into tasks, some of which are completed by the user, some of which are completed by a server doing the computation/spotting. By including a task manager which distributes tasks, we can allow for multiple users to be working on the same set of documents simultaneously. See Fig.~\ref{fig:system_diagram} for a brief outline. The tasks to be done by the computation server and the user will be the following subsections.
 
-This method is unique in that the different user's progress will help produce more tasks, making the effort becomes very cooperative. This happens as each completed n-gram verification task will lend labels over a portion of the corpus being transcribed. This allows more possible transcriptions to be found. Each transcription that is done gives more n-gram image examples to the system to improve spotting, creating more tasks for the server and then other users. This incremental learning from new n-gram example images can be done in two ways: using them as a new image exemplars for queries directly or attempt to learn features from them to improve following queries. Additionally, we can use them as a refining tool to prune images returned by previous spotting tasks (that haven't been user-reviewed yet).
+This method is unique in that the different user's progress will help produce more tasks, making the effort very cooperative. This happens as each completed n-gram verification task will provide partial transcriptions for words in the corpus. This allows more possible complete word transcriptions to be found. Each spotting and full word transcription that is done provides more n-gram image examples to the system from which it can improve spotting, creating more tasks for the server and then other users. This incremental learning from new n-gram example images can be done in two ways: using them as new image exemplars for queries directly or attempt to learn features from them to improve following queries. Additionally, we can use them as a refining tool to prune images returned by previous spotting tasks (that haven't been user-reviewed yet).
 
 This prototype system will be developed as a in-browser app, thus making it immediately cross-compatible with all devices with a modern browser. A Node.js server will be created to communicate with the clients and the C++ program which will be responsible for performing the actual word spotting.
 
+TODO: new image
 \begin{figure}[h]
     \centering
     \includegraphics[width=.85\textwidth]{system_diagram_with_arrows}
@@ -259,15 +253,15 @@ This prototype system will be developed as a in-browser app, thus making it imme
 \textbf{Character n-gram spotting}
 
 \begin{addmargin}[3em]{3em}
-Select the most promising n-gram exemplar to spot. Spot that n-gram in the documents. Pass results to user for n-gram verification task.
+Select the most promising n-gram exemplar to spot; this is based on the frequency of n-grams and whether we have new information for an n-gram from document/author specific examples extracted from transcribed text. Spot that n-gram in the documents. Pass results to user for n-gram verification task.
 \\[.5cm]
 \end{addmargin}
 
 
-\textbf{Dictionary look-up}
+\textbf{Lexicon look-up}
 
 \begin{addmargin}[3em]{3em}
-When a word has roughly 50\% of its area labelled by n-grams, we create a regular expression representing what we know. This is based on the position of the n-grams in the word, using flexible wildcards to specify possible unrecognized characters and their position (the ``Wheel of Fortune'' game). If only a few words are returned by the regular expression (10 or less) we pass this to the user for the transcription selection task.
+When a word has roughly 50\% of its area labelled by n-grams, we create a regular expression representing what we know. This is based on the position of the n-grams in the word, using flexible wildcards to specify possible unrecognized characters and their position (the ``Wheel of Fortune'' game). If only a few words are returned by the regular expression (10 or less) we pass this to the user for the transcription selection task (where the user selects the correct the transcription from the returned words).
 \\[.5cm]
 \end{addmargin}
 
@@ -286,7 +280,7 @@ After the user has confirmed a transcription for a word image, we can then extra
 \textbf{Character n-gram verification} (Fig.~\ref{fig:userTask_spot})
 
 \begin{addmargin}[3em]{3em}
-The user is shown the n-gram that was spotted and highlighted segments of the images which had positive results. The user discards any false-positives. The assumption is that most should be correct, thus making it easy to pick out those not belonging to the set.
+The user is shown segments of the image where the spotted n-grams are highlighted. The user deselects/discards any false-positives. The assumption is that most should be correct, thus making it easy to pick out those not belonging to the set.
 \\[.5cm]
 \end{addmargin}
 
@@ -300,14 +294,14 @@ The user is shown the n-gram that was spotted and highlighted segments of the im
 \textbf{Select correct transcription} (Fig.~\ref{fig:userTask_trans})
 
 \begin{addmargin}[3em]{3em}
-The user is shown the image being transcribed and presented the list of possible transcriptions. The user either selects the correct transcription, or corrects the search by doing one or more of the following:
+The word being transcribed highlighted and is presented to the user with the list of possible transcriptions. The user either selects the correct transcription, or corrects the search by doing one or more of the following:
 \begin{itemize}
     \item Splitting the image into two words.
     \item Indicating the image is splicing a word (and which side).
     \item Indicating if either or both of the n-gram labels are wrong.
     \item Manually entering the transcription.
 \end{itemize}
-If a transcription is selected or entered, a letter alignment is guessed for the word (using the known n-grams as key anchors). The alignment is used to extract author specific n-gram exemplars which are returned to the program.
+If a transcription is selected or entered, a letter alignment is guessed for the remainder of the word (using the known n-grams as key anchors). The alignment is used to extract author specific n-gram exemplars which are returned to the program.
 \\[.5cm]
 \end{addmargin}
 }
@@ -315,7 +309,7 @@ If a transcription is selected or entered, a letter alignment is guessed for the
 \begin{figure}[h]
     \centering
     \includegraphics[width=.6\textwidth]{userTask_trans}
-    \caption{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's dictionary look-up.}
+    \caption{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.}
     \label{fig:userTask_trans}
 \end{figure}
 
@@ -327,7 +321,7 @@ We have begun testing state-of-the-art word spotting methods under the applicati
 \subsubsection{System Simulation}
 In an attempt to justify our method, we created a simulation to find how many tasks would need to be completed by users if we were transcribing a given corpus. This simulation takes a number of parameters: a recall rate for a imaginary subword spotting method, a rough confidence level for counting the number of unrecognized characters in a word, and a cut off for the number of possible transcriptions a word must be narrowed to before counting the word as transcribed (the real system would send a transcription selection task to the user, but we don't feel the need to simulate this). We ignore the precision of our imaginary spotting method as all spotting is verified by the user, so given no user error, it will have 100\% precision. However, the recall of the system will be balanced with how much work the user has to do in these tasks; this is important in our selection/development of a subword spotting method, but not to our simulation.
 
-We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, based on the mAP mentioned in the previous section (this should roughly correspond to a 50\% accuracy rate), although it is likely a better subword spotting method will be used for our actual system. The results presented here are from a simulated transcription of the 20 page George Washington dataset. We used a 32,000 word dictionary and spotted only the 100 most frequent bigrams.
+We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, based on the mAP mentioned in the previous section (this should roughly correspond to a 50\% accuracy rate), although it is likely a better subword spotting method will be used for our actual system. The results presented here are from a simulated transcription of the 20 page George Washington dataset. We used a 32,000 word lexicon and spotted only the 100 most frequent bigrams.
 
 In Fig.~\ref{fig:fullSim} you can see the progress of the simulation through the series of tasks. As might be expected, the rate of transcription begins to drop off as most of the words are transcribed. It will be necessary to cut off transcription through n-gram completion at some point and do manual transcription for the remaining words. However, this demonstrates the feasibility of our method. Within 250 spottings, 75\% of the corpus is transcribed (including out-of-vocabulary words).
 
