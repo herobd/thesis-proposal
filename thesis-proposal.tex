@@ -239,6 +239,9 @@ This method is unique in that the different user's progress will help produce mo
 This prototype system will be developed as a in-browser app, thus making it immediately cross-compatible with all devices with a modern browser. A Node.js server will be created to communicate with the clients and the C++ program which will be responsible for performing the actual word spotting.
 
 TODO: new image
+//This new image will be a flow of images.
+//A portion of a document -> [representation of spotting server?] -> document with n-grams highlighted (some wrong) -> [representation of user] -> document with n-grams highlighted, incorrect highlights crossed out -> zoom on word, regex it generates below it -> list of returned possible words -> [user] -> correct transcription
+//Additionally, it will have arrows leading from the correct n-grams and the final transcription (with image) leading through a 'on-line learining' box back to the spotting [server?]
 \begin{figure}[h]
     \centering
     \includegraphics[width=.85\textwidth]{system_diagram_with_arrows}
@@ -258,17 +261,17 @@ Select the most promising n-gram exemplar to spot; this is based on the frequenc
 \end{addmargin}
 
 
-\textbf{Lexicon look-up}
+\textbf{Lexicon look-up and scoring}
 
 \begin{addmargin}[3em]{3em}
-When a word has roughly 50\% of its area labelled by n-grams, we create a regular expression representing what we know. This is based on the position of the n-grams in the word, using flexible wildcards to specify possible unrecognized characters and their position (the ``Wheel of Fortune'' game). If only a few words are returned by the regular expression (10 or less) we pass this to the user for the transcription selection task (where the user selects the correct the transcription from the returned words).
+When a word has roughly 50\% of its area labelled by n-grams, we create a regular expression representing what we know. This is based on the position of the n-grams in the word, using flexible wildcards to specify possible unrecognized characters and their position (the ``Wheel of Fortune'' game). If the returned words are small (perhaps less than 40), we performing a scoring of them by running a word spotting algorithm on the word image searching for each of the possibilities. We can then discard any possible transcriptions scoring below a threshold. This threshold can be adaptive to the distribution of the particular set of scores. If few words are above the threshold (10 or less) we pass this to the user for the transcription selection task (where the user selects the correct the transcription from the returned words). If only one word is returned, either from the initial look-up or from the score pruning, we can transcribe the word without human intervention.
 \\[.5cm]
 \end{addmargin}
 
 \textbf{Incremental learning from transcription}
 
 \begin{addmargin}[3em]{3em}
-After the user has confirmed a transcription for a word image, we can then extract new character n-gram exemplars from the image, using the spatial information we have from the n-grams spotted in the image. These can be author specific exemplars which can greatly improve spotting for pages with the same author. How the exemplar is used will depend on the final spotting algorithm selected; it may either be used directly as a query or as means to learn new character models.
+After the user has confirmed a transcription for a word image, we can then extract new character n-gram exemplars from the image, using the spatial information we have from the n-grams spotted in the image. These can be author specific exemplars which can greatly improve spotting for pages with the same author. How the exemplar is used will depend on the final spotting algorithm selected; it may either be used directly as a query, to modify a query, or as means to learn new character models.
 \\[.5cm]
 \end{addmargin}
 }
@@ -294,14 +297,13 @@ The user is shown segments of the image where the spotted n-grams are highlighte
 \textbf{Select correct transcription} (Fig.~\ref{fig:userTask_trans})
 
 \begin{addmargin}[3em]{3em}
-The word being transcribed highlighted and is presented to the user with the list of possible transcriptions. The user either selects the correct transcription, or corrects the search by doing one or more of the following:
+The word being transcribed highlighted and is presented to the user with the list of possible transcriptions (ordered by the likelihood of the possible transcriptions and the score generated from word spotting the image). The user either selects the correct transcription, or corrects the search by doing one or more of the following:
 \begin{itemize}
     \item Splitting the image into two words.
     \item Indicating the image is splicing a word (and which side).
-    \item Indicating if either or both of the n-gram labels are wrong.
+    \item Indicating if any of the n-gram labels are wrong.
     \item Manually entering the transcription.
 \end{itemize}
-If a transcription is selected or entered, a letter alignment is guessed for the remainder of the word (using the known n-grams as key anchors). The alignment is used to extract author specific n-gram exemplars which are returned to the program.
 \\[.5cm]
 \end{addmargin}
 }
@@ -313,6 +315,9 @@ If a transcription is selected or entered, a letter alignment is guessed for the
     \label{fig:userTask_trans}
 \end{figure}
 
+\subsection{An Example}
+To solidify our description of our transcription system, let us examine an example of how it might operate. Suppose we have a corpus of document images that contain a total of 4860 words (the George Washington dataset). We would begin by spotting the most common bigram ,``th.'' We might spot 30\% of the instances of ``th'' in the document, 178 out of 593, with some number of false-positives. All of our spotting results are presented to users who discard the false-positives, thus leading to very high precision. Of the X instances of ``th'' we've spotted, 135 are at the beginning of the word. TODO
+
 \subsection{Preliminary Work}
 
 \subsubsection{Subword Spotting}
@@ -321,9 +326,9 @@ We have begun testing state-of-the-art word spotting methods under the applicati
 \subsubsection{System Simulation}
 In an attempt to justify our method, we created a simulation to find how many tasks would need to be completed by users if we were transcribing a given corpus. This simulation takes a number of parameters: a recall rate for a imaginary subword spotting method, a rough confidence level for counting the number of unrecognized characters in a word, and a cut off for the number of possible transcriptions a word must be narrowed to before counting the word as transcribed (the real system would send a transcription selection task to the user, but we don't feel the need to simulate this). We ignore the precision of our imaginary spotting method as all spotting is verified by the user, so given no user error, it will have 100\% precision. However, the recall of the system will be balanced with how much work the user has to do in these tasks; this is important in our selection/development of a subword spotting method, but not to our simulation.
 
-We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, based on the mAP mentioned in the previous section (this should roughly correspond to a 50\% accuracy rate), although it is likely a better subword spotting method will be used for our actual system. The results presented here are from a simulated transcription of the 20 page George Washington dataset. We used a 32,000 word lexicon and spotted only the 100 most frequent bigrams.
+We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, based on the mAP mentioned in the previous section (this should roughly correspond to a 50\% accuracy rate), although it is likely a better subword spotting method will be used for our actual system. The results presented here are from a simulated transcription of the 20-page George Washington dataset. We used a 32,000 word lexicon and spotted only the 100 most frequent bigrams.
 
-In Fig.~\ref{fig:fullSim} you can see the progress of the simulation through the series of tasks. As might be expected, the rate of transcription begins to drop off as most of the words are transcribed. It will be necessary to cut off transcription through n-gram completion at some point and do manual transcription for the remaining words. However, this demonstrates the feasibility of our method. Within 250 spottings, 75\% of the corpus is transcribed (including out-of-vocabulary words).
+In Fig.~\ref{fig:fullSim} we can see the progress of the simulation through the series of tasks. As might be expected, the rate of transcription begins to drop off as most of the words are transcribed. It will be necessary to cut off transcription through n-gram completion at some point and do manual transcription for the remaining words. However, this demonstrates the feasibility of our method. Within 250 spottings, 75\% of the corpus is transcribed (including out-of-vocabulary words).
 
 A parameter our simulation is very sensitive to, which we assume the actual system will be sensitive to as well, is the confidence in predicting the number of characters in a word which are not spotted. If given a low confidence, such that the simulation searched more possible transcriptions, the simulation saturated transcription at around 66\% transcribed at 350 iterations (spottings) and failed to move past 71\% by 1000 iterations. If given perfect knowledge of how many characters are present, but not spotted, the system achieves 66\% after only 127 iterations and does not saturate until about 86\% has been transcribed. From further analysis, we see that it is caused by many words being transcribed as much as they can be (given the limited n-gram set), but still not returning a possible transcription count below the threshold of 10. If the prediction of the number of unspotted characters proves to be difficult, a loosening of this threshold as the corpus is transcribed may be required.
 
