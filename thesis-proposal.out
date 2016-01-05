@@ -6,13 +6,14 @@
 \BOOKMARK [1][-]{section.4}{Project Description}{}% 6
 \BOOKMARK [2][-]{subsection.4.1}{Spotting}{section.4}% 7
 \BOOKMARK [2][-]{subsection.4.2}{Preprocessing}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.3}{Dictionary}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Lexicon}{section.4}% 9
 \BOOKMARK [2][-]{subsection.4.4}{Tool}{section.4}% 10
 \BOOKMARK [3][-]{subsubsection.4.4.1}{Computation Server Tasks}{subsection.4.4}% 11
 \BOOKMARK [3][-]{subsubsection.4.4.2}{User Tasks}{subsection.4.4}% 12
-\BOOKMARK [2][-]{subsection.4.5}{Preliminary Work}{section.4}% 13
-\BOOKMARK [3][-]{subsubsection.4.5.1}{Subword Spotting}{subsection.4.5}% 14
-\BOOKMARK [3][-]{subsubsection.4.5.2}{System Simulation}{subsection.4.5}% 15
-\BOOKMARK [1][-]{section.5}{Validation}{}% 16
-\BOOKMARK [2][-]{subsection.5.1}{User Study}{section.5}% 17
-\BOOKMARK [1][-]{section.6}{Thesis Schedule}{}% 18
+\BOOKMARK [2][-]{subsection.4.5}{An Example}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.6}{Preliminary Work}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.6.1}{Subword Spotting}{subsection.4.6}% 15
+\BOOKMARK [3][-]{subsubsection.4.6.2}{System Simulation}{subsection.4.6}% 16
+\BOOKMARK [1][-]{section.5}{Validation}{}% 17
+\BOOKMARK [2][-]{subsection.5.1}{User Study}{section.5}% 18
+\BOOKMARK [1][-]{section.6}{Thesis Schedule}{}% 19

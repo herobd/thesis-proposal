@@ -199,7 +199,7 @@ Rodr{\i}guez et al\cite{Rodrıguez2008} proposed a simple histogram gradient fea
 
 Recently, Aldavert et al\cite{Aldavert2015} and Almazan et al\cite{Almazan2014} have presented superior word spotting methods which rely on heuristic descriptions. Aldavert et al use the well known bag-of-visual-words method, including recent improvements from the Computer Vision community. This is a very simple, yet effective, exemplar spotting approach. Aldavert et al use Fischer vectors, which are similar to bag-of-visual-words, with spatial pyramids in addition to a special character histogram pyramids. These are used to find a new space in training in which both strings and word images can be embedded. This allows it to preform both string and exemplar queries as well as hybrid queries which yield excellent results.
 
-We are interested in spotting character n-grams (bi- and trigrams) rather than words. While this hasn't explicitly been done, we feel examining the performance of other methods on short words (2 to 3 letters) is instructive. For Rothacker et al's\cite{Rothacker2013} their segmentation free HMM based method, they report $\sim$46\% and $\sim$55\% mean Average Precision (mAP) for two and three lettered words respectively, a drop by $\sim$15\% and $\sim$6\% from the mAP for all words they tested (61\%). Fischer et al\cite{Fischer2012} report $\sim$70\% and $\sim$83\% mAP for two and three lettered words, compared to >90\% mAP for words of length 5 or longer, for their line segmentation dependent, character HMM based method. While neither of these numbers are very promising, Almazan et al\cite{Almazan2012} observe that sliding window approaches can frequently find false positives of short words inside other words (e.g.~finding the word ``the'' inside the word ``weather''). As this is precisely what we want to happen in n-gram spotting (this is, we \texit{want} to find groups of letters in the middle of words), we expect we should have more success spotting character n-grams than other methods in spotting short words. However, part of the poor accuracy in spotting short words is the fact that there is less information with which to discriminate; this is an obstacle we still must overcome.
+We are interested in spotting character n-grams (bi- and trigrams) rather than words. While this hasn't explicitly been done, we feel examining the performance of other methods on short words (2 to 3 letters) is instructive. For Rothacker et al's\cite{Rothacker2013} their segmentation free HMM based method, they report $\sim$46\% and $\sim$55\% mean Average Precision (mAP) for two and three lettered words respectively, a drop by $\sim$15\% and $\sim$6\% from the mAP for all words they tested (61\%). Fischer et al\cite{Fischer2012} report $\sim$70\% and $\sim$83\% mAP for two and three lettered words, compared to >90\% mAP for words of length 5 or longer, for their line segmentation dependent, character HMM based method. While neither of these numbers are very promising, Almazan et al\cite{Almazan2012} observe that sliding window approaches can frequently find false positives of short words inside other words (e.g.~finding the word ``the'' inside the word ``weather''). As this is precisely what we want to happen in n-gram spotting (this is, we \textit{want} to find groups of letters in the middle of words), we expect we should have more success spotting character n-grams than other methods in spotting short words. However, part of the poor accuracy in spotting short words is the fact that there is less information with which to discriminate; this is an obstacle we still must overcome.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -232,20 +232,16 @@ The system is designed to leverage the flexibility of character n-gram spotting 
 
 We will begin by training our spotting method so that it can spot n-grams in most types of handwriting with a reasonable accuracy. This will be used to begin spotting the documents. Depending on this character n-gram spotter's performance, a training step may need to precede the main execution, allowing the spotting method to gather context/author specific n-gram exemplars. 
 
-The system is broken into tasks, some of which are completed by the user, some of which are completed by a server doing the computation/spotting. By including a task manager which distributes tasks, we can allow for multiple users to be working on the same set of documents simultaneously. See Fig.~\ref{fig:system_diagram} for a brief outline. The tasks to be done by the computation server and the user will be the following subsections.
+The system is broken into tasks, some of which are completed by the user, some of which are completed by a server doing the computation/spotting. By including a task manager which distributes tasks, we can allow for multiple users to be working on the same set of documents simultaneously. See Fig.~\ref{fig:system_diagram} for a brief outline of the work-flow. The tasks comprising the work done by the computation server and the user will be the following subsections.
 
 This method is unique in that the different user's progress will help produce more tasks, making the effort very cooperative. This happens as each completed n-gram verification task will provide partial transcriptions for words in the corpus. This allows more possible complete word transcriptions to be found. Each spotting and full word transcription that is done provides more n-gram image examples to the system from which it can improve spotting, creating more tasks for the server and then other users. This incremental learning from new n-gram example images can be done in two ways: using them as new image exemplars for queries directly or attempt to learn features from them to improve following queries. Additionally, we can use them as a refining tool to prune images returned by previous spotting tasks (that haven't been user-reviewed yet).
 
 This prototype system will be developed as a in-browser app, thus making it immediately cross-compatible with all devices with a modern browser. A Node.js server will be created to communicate with the clients and the C++ program which will be responsible for performing the actual word spotting.
 
-TODO: new image
-//This new image will be a flow of images.
-//A portion of a document -> [representation of spotting server?] -> document with n-grams highlighted (some wrong) -> [representation of user] -> document with n-grams highlighted, incorrect highlights crossed out -> zoom on word, regex it generates below it -> list of returned possible words -> [user] -> correct transcription
-//Additionally, it will have arrows leading from the correct n-grams and the final transcription (with image) leading through a 'on-line learining' box back to the spotting [server?]
 \begin{figure}[h]
     \centering
-    \includegraphics[width=.85\textwidth]{system_diagram_with_arrows}
-    \caption{The work-flow of the proposed CAT system. This can support multiple computation servers and multiple users at the same time.}
+    \includegraphics[width=.98\textwidth]{flow}
+    \caption{The work-flow of the proposed CAT system. We show a portion of a document image as an example.}
     \label{fig:system_diagram}
 \end{figure}
 
@@ -304,7 +300,7 @@ The word being transcribed highlighted and is presented to the user with the lis
     \item Indicating if any of the n-gram labels are wrong.
     \item Manually entering the transcription.
 \end{itemize}
-\\[.5cm]
+[.5cm]
 \end{addmargin}
 }
 
