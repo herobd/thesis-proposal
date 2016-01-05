@@ -275,6 +275,20 @@ After the user has confirmed a transcription for a word image, we can then extra
 
 \subsubsection{User Tasks}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.4\textwidth]{userTask_spot}
+    \caption{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.}
+    \label{fig:userTask_spot}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.6\textwidth]{userTask_trans}
+    \caption{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.}
+    \label{fig:userTask_trans}
+\end{figure}
+
 {\setlength{\parindent}{0cm}
 \textbf{Character n-gram verification} (Fig.~\ref{fig:userTask_spot})
 
@@ -283,12 +297,6 @@ The user is shown segments of the image where the spotted n-grams are highlighte
 \\[.5cm]
 \end{addmargin}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=.4\textwidth]{userTask_spot}
-    \caption{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.}
-    \label{fig:userTask_spot}
-\end{figure}
 
 \textbf{Select correct transcription} (Fig.~\ref{fig:userTask_trans})
 
@@ -304,12 +312,7 @@ The word being transcribed highlighted and is presented to the user with the lis
 \end{addmargin}
 }
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=.6\textwidth]{userTask_trans}
-    \caption{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.}
-    \label{fig:userTask_trans}
-\end{figure}
+
 
 \subsection{An Example}
 To solidify our description of our transcription system, let us examine an example of how it might operate. Suppose we have a corpus of document images that contain a total of 4860 words (the George Washington dataset). We would begin by spotting the most common bigram ,``th.'' We might spot 30\% of the instances of ``th'' in the document, 178 out of 593, with some number of false-positives. All of our spotting results are presented to users who discard the false-positives, thus leading to very high precision. Of the X instances of ``th'' we've spotted, 135 are at the beginning of the word. TODO
@@ -320,9 +323,9 @@ To solidify our description of our transcription system, let us examine an examp
 We have begun testing state-of-the-art word spotting methods under the application of spotting bigrams and trigrams within words. Our best results so far have been Almazan et al\cite{Almazan2014}, which achieved 49\% mAP spotting bigrams and 67\% mAP spotting trigrams in the George Washington dataset.
 
 \subsubsection{System Simulation}
-In an attempt to justify our method, we created a simulation to find how many tasks would need to be completed by users if we were transcribing a given corpus. This simulation takes a number of parameters: a recall rate for a imaginary subword spotting method, a rough confidence level for counting the number of unrecognized characters in a word, and a cut off for the number of possible transcriptions a word must be narrowed to before counting the word as transcribed (the real system would send a transcription selection task to the user, but we don't feel the need to simulate this). We ignore the precision of our imaginary spotting method as all spotting is verified by the user, so given no user error, it will have 100\% precision. However, the recall of the system will be balanced with how much work the user has to do in these tasks; this is important in our selection/development of a subword spotting method, but not to our simulation.
+In an attempt to justify our method, we created a simulation to find how many tasks would need to be completed by users if we were transcribing a given corpus. This simulation takes a number of parameters: a recall rate for an imaginary subword spotting method, a rough confidence level for counting the number of unrecognized characters in a word, and a cut off for the number of possible transcriptions a word must be narrowed to before counting the word as transcribed. The real system would send a transcription selection task to the user, but we don't feel the need to simulate this. We ignore the precision of our imaginary spotting method as all spotting is verified by the user, so given no user error, it will have 100\% precision. However, the recall of the system will be balanced with how much work the user has to do in these tasks; this is important in our selection/development of a subword spotting method, but not to our simulation.
 
-We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, based on the mAP mentioned in the previous section (this should roughly correspond to a 50\% accuracy rate), although it is likely a better subword spotting method will be used for our actual system. The results presented here are from a simulated transcription of the 20-page George Washington dataset. We used a 32,000 word lexicon and spotted only the 100 most frequent bigrams.
+We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, based on the mAP mentioned in the previous section (this should roughly correspond to a 50\% accuracy rate), although it is likely that a better subword spotting method will be used for our actual system. The results presented here are from a simulated transcription of the 20-page George Washington dataset. We used a 32,000 word lexicon and spotted only the 100 most frequent bigrams.
 
 In Fig.~\ref{fig:fullSim} we can see the progress of the simulation through the series of tasks. As might be expected, the rate of transcription begins to drop off as most of the words are transcribed. It will be necessary to cut off transcription through n-gram completion at some point and do manual transcription for the remaining words. However, this demonstrates the feasibility of our method. Within 250 spottings, 75\% of the corpus is transcribed (including out-of-vocabulary words).
 
@@ -330,8 +333,8 @@ A parameter our simulation is very sensitive to, which we assume the actual syst
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.0\textwidth]{simulationGraph}
-    \caption{A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the percentage of words which have the given portion of their characters recognized by spottings (or indicating the percentage of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and a number of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words who are between more that 40\% spotted that are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot.}
+    \includegraphics[width=1.0\textwidth]{simulationGraph_line}
+    \caption{A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the percent of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. TODO:example of that case}
     \label{fig:fullSim}
 \end{figure}
 
