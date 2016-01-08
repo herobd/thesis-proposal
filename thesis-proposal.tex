@@ -39,7 +39,7 @@
 \usepackage{float}
 \usepackage{scrextend}
 \usepackage{url}
-\usepackage{listing}
+%\usepackage{courier}
 \usepackage[
     pdftex,
     bookmarks=true,
@@ -186,9 +186,17 @@ Robert Clawson\cite{Clawson2014}\footnote{You can view a short demo and explanat
     	\label{fig:ii}
 \end{figure}
 
-TODO: "A framework" also provides a similar method.
+%TODO: "A framework" also provides a similar method.?
 
 TODO: carpet approach and clustering
+Neudecker and Tzadok\cite{Neudecker2010} presented a CAT system for historical printed documents which is very similar to the CAT system we are presenting here. The system would first segment the individual characters of the documents and run an OCR engine on them. Those characters with low confidence would then be presented to a user for verification in a character session. A single character session contains all the low-confidence character images classified to a single character. An example of their system's character session is given in Fig.~\ref{fig:carpet} for the character ``?.'' The user merely needs to select the incorrect classifications. Then in a word session, a word image is shown to the user with possible transcriptions for the word, which they need to select. There are two key strengths of this system. One is that it breaks all user tasks into selections, rather than typing, and they are quickly completed. This creates a much more enjoyable experience for the user and it is highly parallelism for crowd-sourced transcribing. This parallelism is achieved as all character sessions are independent of one another and all word sessions are independent of one another. Our system will follow this same pattern.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.98\textwidth]{carpet}
+    \caption{A screen shot of a character session for ``?'' from Neudecker and Tzadok's CAT system, taken directly from their report \cite{Neudecker2010}. Notice how easy it is for a user to simply click on the erroneous classifications.}
+    \label{fig:carpet}
+\end{figure}
 
 We will show that an alternative to word matching, or word spotting, is character n-gram spotting, as n-grams have more frequent repetition than words do. This will provide the backbone of our CAT system.
 
@@ -316,7 +324,9 @@ The word being transcribed highlighted and is presented to the user with the lis
 
 
 \subsection{An Example}
-To solidify our description of our transcription system, let us examine an example of how it might operate. Suppose we have a corpus of document images that contain a total of 4860 words (the George Washington dataset). We would begin by spotting the most common bigram ,``th.'' We might spot 30\% of the instances of ``th'' in the document, 178 out of 593, with some number of false-positives. All of our spotting results are presented to users who discard the false-positives, thus leading to very high precision. Of the X instances of ``th'' we've spotted, 135 are at the beginning of the word. TODO
+To solidify our description of our transcription system, let us examine a very specific example of how our system would transcribe a word, ``there,'' in the corpus and how the simulation represents this. The word ``there'' occurs 15 times in the GW corpus. The bigram ``TH'' being the most common in the English language would be the first one spotted. We are presuming that out spotting method has 49\% recall. The system would spot roughly 7 of the ``th''s in the ``there''s of the corpus, along with other ``th''s in other words and false positives. We simulate this at each ``th'' by having a 49\% change of ``spotting'' the ``th''. In the real system, the spotted ``th''s are presented to a user to clean out the false positives. In our simulation, we assume this is done and there are no false positives. Having ``th'' spotted at the beginning of a word ``there'' would allow us to create the regular expression \texttt{{\textasciicircum}th....?\$} (the extra \texttt{.?} present to represent uncertainty about the number of characters present in the word) for each of these instances, which will return 60 different transcriptions from the lexicon. This is too many to present to a user so we continue spotting. The fourth bigram that would be spotted is ``ER.'' Let us say the ``er'' is spotted in 4 of the ``there''s we've spotted ``th''s in, allowing us to create the regular expression \texttt{{\textasciicircum}ther..?\$} for them. This returns only the words ``there'' and ``there's'' (let's assume the lexicon is striped of non-word characters) and so we can transcribe these 4 words by simply presenting the two options to the user and having him/her select the correct transcription. We can use the ``th''s and ``er''s we did spot correctly for create new queries for subsequent spotting iterations, which may catch the ``th''s or ``er''s we missed previously. Additionally, we can extract  ``re'' examples from the ``there''s we have transcribed, by estimating their location, based on the location of the ``er''s we spotted.
+
+%Let's examine another example, the word ``enlisted'' which occurs three times (see Fig.~\ref{fig:system_diagram}). 
 
 \subsection{Preliminary Work}
 
@@ -328,8 +338,6 @@ In an attempt to justify our method, we created a simulation to find how many ta
 
 We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, based on the mAP mentioned in the previous section (this should roughly correspond to a 50\% accuracy rate), although it is likely that a better subword spotting method will be used for our actual system. The results presented here are from a simulated transcription of the 20-page George Washington dataset. We used a 32,000 word lexicon and spotted only the 100 most frequent bigrams.
 
-For clarity, let us examine a very specific example of how our system would transcribe a word, ``there,'' in the corpus and how the simulation represents this. The word ``there'' occurs 15 times in the GW corpus. The bigram ``TH'' being the most common in the English language would be the first one spotted. We are presuming that out spotting method has 49\% recall. The system would spot roughly 7 of the ``th''s in the ``there''s of the corpus, along with other ``th''s in other words and false positives. We simulate this at each ``th'' by having a 49\% change of ``spotting'' the ``th''. In the real system, the spotted ``th''s are presented to a user to clean out the false positives. In our simulation, we assume this is done and there are no false positives. Having ``th'' spotted at the begining of a word ``there'' would allow us to create the regular expression \lstinline|dfdg|
-
 In Fig.~\ref{fig:fullSim} we can see the progress of the simulation through the series of tasks. As might be expected, the rate of transcription begins to drop off as most of the words are transcribed. It will be necessary to cut off transcription through n-gram completion at some point and do manual transcription for the remaining words. However, this demonstrates the feasibility of our method. Within 250 spottings, 75\% of the corpus is transcribed (including out-of-vocabulary words).
 
 A parameter our simulation is very sensitive to, which we assume the actual system will be sensitive to as well, is the confidence in predicting the number of characters in a word which are not spotted. If given a low confidence, such that the simulation searched more possible transcriptions, the simulation saturated transcription at around 66\% transcribed at 350 iterations (spottings) and failed to move past 71\% by 1000 iterations. If given perfect knowledge of how many characters are present, but not spotted, the system achieves 66\% after only 127 iterations and does not saturate until about 86\% has been transcribed. From further analysis, we see that it is caused by many words being transcribed as much as they can be (given the limited n-gram set), but still not returning a possible transcription count below the threshold of 10. If the prediction of the number of unspotted characters proves to be difficult, a loosening of this threshold as the corpus is transcribed may be required.
@@ -337,7 +345,7 @@ A parameter our simulation is very sensitive to, which we assume the actual syst
 \begin{figure}[h]
     \centering
     \includegraphics[width=1.0\textwidth]{simulationGraph_line}
-    \caption{A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the percent of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. TODO:example of that case}
+    \caption{A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the percent of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. An example of this diabolic case is ``suffice.'' We only spot the bigrams ``ic'' and ``ce'' and the number of seven letter words ending in ``ice'' is 17 for our dictionary, thus this word would never be ``transcribed'' in the simulation.}
     \label{fig:fullSim}
 \end{figure}
 
@@ -349,7 +357,7 @@ The n-gram spotting methods will be empirically tested using well known datasets
 
 Our CAT system must be validated with a user study as it's goal is to be a more effective crowdsourcing method for transcription. It is not purely intended to be faster (indeed, it may not be faster than other computer assisted transcription methods), but more modular, allowing for work to be broken up into smaller pieces, and more enjoyable to use. It clearly achieves modularity in design, but we want to see how fast it is and get user feedback to see if it is something people would enjoy using.
 
-Most other computer assisted transcription methods rely on a more fully automated transcription upfront and report performance measures in terms of word error rate or effort reduction, which are measures of how many words the user had to correct. While our users will primarily be doing corrections as well, they will very different types of corrections (taps and swipes instead of typing). Thus it would be difficult to compare these other methods to our proposed method using the previously authors' metrics, though they still may prove to be useful.
+Most other computer assisted transcription methods rely on a more fully automated transcription upfront and report performance measures in terms of word error rate or effort reduction, which are measures of how many words the user had to correct. While our users will primarily be doing corrections as well, they will very different types of corrections, that is, merely rejecting bad n-gram spottings instead of typing new transcriptions. Thus it would be difficult to compare these other methods to our proposed method using the previously authors' metrics, though they still may prove to be useful.
 
 We propose doing a user study which would involve having a volunteer\footnote{Recruiting volunteers can be aided by using Robert Clawson's volunteer testers list as a starting place. The rest will be gathered via on-campus flyers and personal connections.} use the system for about 5-10 minutes on their own device at their own convenience. This is probably the easiest way to get a large number of participants and a varying degree of experience transcribing documents among the volunteers. To encourage use on more platforms, so we get a broader survey, the study will encourage users to use tablets and phones.
 We will track what device they use, how many tasks they complete, how long it takes them to complete tasks, and errors they make, in addition to having the volunteers complete a short survey about their experience.
