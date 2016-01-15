@@ -170,7 +170,7 @@ Toselli, et al\cite{Toselli2007} have explored the realm of CAT using the idea o
 
 While it is useful to employ an automatic handwriting recognition method as part of a CAT approach to reduce the human burden, we cannot use the same type of recognition used in most CAT systems, where there is a reliance on the predictive capacity of a language model. Some documents are not comprised of only sentences, and thus cannot be transcribed by these methods. However, many documents are structured such that a pattern can be learned to assist in transcription.
 
-Robert Clawson\cite{Clawson2014}\footnote{You can view a short demo and explanation of his approach at \url{https://www.youtube.com/watch?v=gqdVzEPnBEw}} designed a CAT system for tabular documents, which have a clear pattern. His approach relied on simply finding matches in the document column of the current word image and assigning them the same user-specified label, as seen in Fig.~\ref{fig:ii}. This provides an accurate CAT system where the user oversees all transcription. The user oversight of matches was accomplished by showing a list of matches to the user (with an adjustable threshold for sensitivity) from which the user removed the false-positive matches. This leveraged the human user's natural ability to discriminate. However, the approach as a whole is limited as it requires frequent word repetition to be effective. While some tabular documents have this, it is not true for most other documents. Additionally, this method required a very computation preprocessing stage in which a similarity score of all words in a column with all other words in the column had to be computed.
+Robert Clawson\cite{Clawson2014}\footnote{You can view a short demo and explanation of his approach at \url{https://www.youtube.com/watch?v=gqdVzEPnBEw}} designed a CAT system for handwritten tabular documents, which have a clear pattern. His approach relied on simply finding matches in the document column of the current word image and assigning them the same user-specified label, as seen in Fig.~\ref{fig:ii}. This provides an accurate CAT system where the user oversees all transcription. The user oversight of matches was accomplished by showing a list of matches to the user (with an adjustable threshold for sensitivity) from which the user removed the false-positive matches. This leveraged the human user's natural ability to discriminate. However, the approach as a whole is limited as it requires frequent word repetition to be effective. While some tabular documents have this, it is not true for most other documents. Additionally, this method required a very computation preprocessing stage in which a similarity score of all words in a column with all other words in the column had to be computed.
 
 \begin{figure}[h]
     \centering
@@ -190,8 +190,9 @@ Robert Clawson\cite{Clawson2014}\footnote{You can view a short demo and explanat
 \end{figure}
 
 %TODO: "A framework" also provides a similar method.?
+TODO: "A Framework for Efficient Transcription of Historical Documents Using Keyword Spotting"
 
-Neudecker and Tzadok\cite{Neudecker2010} presented a CAT system for historical printed documents which is very similar to the CAT system we are presenting here. The system would first segment the individual characters of the documents and run an OCR engine on them. Those characters with low confidence would then be presented to a user for verification in a character session. A single character session contains all the low-confidence character images classified to a single character. An example of their system's character session is given in Fig.~\ref{fig:carpet} for the character ``?.'' The user merely needs to select the incorrect classifications. Then in a word session, a word image is shown to the user with possible transcriptions for the word, from which they select the correct one. There are two key strengths of this system. One is that it formats all user tasks as selections, rather than typing, and they are quickly completed. This creates a much more enjoyable experience for the user. The second key strength is that it is highly parallelizable for crowd-sourced transcribing. This parallelism is achieved as all character sessions are independent of one another and all word sessions are independent of one another. Our system will follow this methods pattern to obtain these strengths.
+Neudecker and Tzadok\cite{Neudecker2010} presented a CAT system for historical printed documents which is very similar to the CAT system we are presenting here. The system would first segment the individual characters of the documents and run an OCR engine on them. Those characters with low confidence would then be presented to a user for verification in a character session. A single character session contains all the low-confidence character images classified to a single character. An example of their system's character session for the character ``?'' is given in Fig.~\ref{fig:carpet}.  The user merely needs to select the incorrect classifications. Then in a word session, a word image is shown to the user with possible transcriptions for the word, from which they select the correct one. There are three key strengths of this system. One is that as long as the document’s characters can be segmented, it can work. The second is that it formats all user tasks as selections, rather than typing, and they are quickly completed. This creates a much more enjoyable experience for the user. The third key strength is that it is highly parallelizable for crowd-sourced transcribing. This parallelism is achieved as all character sessions are independent of one another and all word sessions are independent of one another. Our system will follow this methods pattern so it has flexibility of document types, simple user tasks and a parallelizable framework.
 
 \begin{figure}[h]
     \centering
@@ -204,7 +205,7 @@ Retsinas et al\cite{Retsinas2015} expanded on \cite{Neudecker2010} to reduce the
 
 
 
-Clawson\cite{Clawson2014} uses word spotting and user approval to transcribe, which is dependent on frequent word repition. Neudecker, Tzadok\cite{Neudecker2010} and Retsinas et al\cite{Retsinas2015} use OCR and user approval to transcribe, which is dependent on character segmentation, a difficult problem for handwriting.
+Clawson\cite{Clawson2014} uses word spotting and user approval to transcribe, which is dependent on frequent word repetition. Neudecker, Tzadok\cite{Neudecker2010} and Retsinas et al\cite{Retsinas2015} uses OCR and user approval to transcribe, which is dependent on character segmentation, a difficult problem for handwriting.
  We will show that an alternative, a happy median, to word spotting and OCR is character n-gram spotting, as n-grams have more frequent repetition than words do, but are large enough to spot (i.e. there is not segmentation problem). This will provide the backbone of our CAT system. As character n-gram spotting is very similar to word spotting, let us examine the literature that may be relevant to our method.
 
 Word spotting was first proposed as an alternative to transcribing a corpus. Rather than digitizing the document text image so standard text searches can be run, the document is searched using the images themselves, either with a keyword string or a keyword image (exemplar image). There are two primary approaches to featurizing the images when word spotting: holistic features which capture information about a whole image (word) and local or sequential features\cite{Rodrıguez2008}. Holistic features have one description for an entire word image (such as a bag-of-visual-words), whereas local features have descriptor for a small portion, or window, of a word image. As local features provide much more detail and are more flexible than holistic features, they have been the most actively pursued in research.
@@ -252,7 +253,32 @@ We will begin by training our spotting method so that it can spot n-grams in mos
 
 The system is broken into tasks, some of which are completed by the users, some of which are completed by a server doing the computation/spotting. By including a task manager which distributes tasks, we can allow for multiple users to be working on the same set of documents simultaneously. See Fig.~\ref{fig:system_diagram} for a brief outline of the work-flow. The tasks comprising the work done by the computation server and the user will be the following subsections.
 
-This method is unique as the different user's progress will help produce more tasks, making the effort very cooperative. This happens as each completed n-gram verification task will provide partial transcriptions for words in the corpus. This allows more possible complete word transcriptions to be found. Each spotting and full word transcription that is done provides more n-gram image examples to the system from which it can improve spotting, creating more tasks for the server and then other users. This incremental learning from new n-gram example images can be done in two ways: using them as new image exemplars for queries directly or attempt to learn features from them to improve following queries. Additionally, we can use them as a refining tool to prune images returned by previous spotting tasks (that haven't been user-reviewed yet).
+This method is unique as the different user's progress will help produce more tasks, making the effort very cooperative. This happens as each completed n-gram verification task will provide partial transcriptions for words in the corpus. This allows more possible complete word transcriptions to be found. Each spotting and full word transcription that is done provides more n-gram image examples to the system from which it can improve spotting, creating more tasks for the server and then other users. This incremental learning from new n-gram example images can be done in two ways: using them as new image exemplars for queries directly or attempt to learn features from them to improve following queries. Additionally, we can use them as a refining tool to prune images returned by previous spotting tasks (that haven't been user-reviewed yet). This acts similarly to the relevance feedback of Zagoris et al\cite{Zagoris2015}, though it is all done online as part of the same spotting process.
+
+[Active Learning.TODO]
+Motivations:
+What do we want?
+-Accurate transcriptions.
+-Fast transcriptions.
+What do users want?
+-To feel they are important/making a difference.
+-Not be frustrated. Flow.
+-Sense of accomplishment
+
+What can we learn? (globally and locally adjusted to particular corpi/documents)
+-learn threshold for returning positive ngram spots (we don't want users to have to discard too many false positives)
+-learn threshold for showing ngrams vs. assuming they are correct (i.e. confidence in ngram spotting)
+-learn threshold for picking transcription (score from spotting hypothesis word) (i.e. confidence in word spotting)
+-learn which query to use next
+	is reusing spotted ngrams as queries or extracting new ngram queries from words better?
+	is it better to focus on most common ngrams, or to spot broadly?
+-learn reliability/speed of particular users (so we can give them high priority or difficult tasks)
+-learn user's state-of-mind
+	are they frustrated with the tasks they're doing? (or, how likely are they to quit?)
+	
+
+
+
 
 This prototype system will be developed as a in-browser app, thus making it immediately cross-compatible with all devices with a modern browser. A Node.js server will be created to communicate with the clients and the C++ program which will be responsible for performing the actual word spotting.
 
@@ -270,7 +296,7 @@ This prototype system will be developed as a in-browser app, thus making it imme
 \textbf{Character n-gram spotting}
 
 \begin{addmargin}[3em]{3em}
-Select the most promising n-gram exemplar to spot; this is based on the frequency of n-grams and whether we have new information for an n-gram from document/author specific examples extracted from transcribed text. Spot that n-gram in the documents. Pass the results to users for n-gram verification task(s).
+Select the most promising n-gram exemplar to spot; this is based on the frequency of n-grams and whether we have new information for an n-gram from document/author specific examples extracted from transcribed text. Spot that n-gram in the documents. Pass the results to users for n-gram verification task(s). We additionally could include a confidence threshold, where we would assume any n-gram images with a spotting score below the threshold would be assumed to be correct and not be presented to the user.
 \\[.5cm]
 \end{addmargin}
 
@@ -353,7 +379,7 @@ We have held the possible transcription cut off at 10, as we feel that is a reas
 
 In Fig.~\ref{fig:fullSim} we can see the progress of the simulation through the series of tasks. As might be expected, the rate of transcription begins to drop off as most of the words are transcribed. It will be necessary to stop transcription through n-gram completion at some point and do manual transcription for the remaining words. However, this demonstrates the feasibility of our method. Within 250 spottings, 75\% of the corpus is transcribed (including out-of-vocabulary words).
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{simulationGraph_line}
     \caption{A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the portion of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. An example of this diabolic case i the words ``suffice.'' We the only bigrams we spot present in the word are ``ic'' and ``ce'' and the number of seven letter words ending in ``ice'' is 17 for our dictionary, thus this word would never be ``transcribed'' in the simulation.}
