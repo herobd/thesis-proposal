@@ -132,7 +132,7 @@ We have viewed this particularly from the perspective of FamilySearch's voluntee
 
 We propose a recognition technique which relies on the key idea that if we can recognize only parts of text, the missing information can be implied by use of a lexicon and language model. This can be compared to the well known game ``Wheel of Fortune'' where players are given a handful of letters, their placement in a phrase/word and a category to aid their guessing. See Fig.~\ref{fig:wheel_of_fortune_example} for an example. Can you fill in the blanks? Is it easier if you know they are names?
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=0.25\textwidth]{wheel_of_fortune_example}
     \caption{These are two words with a handful of letters left out. It is not hard to guess the correct words, especially if told these are names. A computer, with access to a lexicon, can be far more effective at this guessing game than a human.}
@@ -161,7 +161,7 @@ Due to the limitations of current handwriting recognition methods, we believe th
 
 Toselli, et al\cite{Toselli2007} have explored the realm of CAT using the idea of user-verified prefixes. They use a fairly standard HMM recognition model as the backbone of their approach, and take advantage of the incremental nature of the Viterbi decoding algorithm. The recognition is done for a line of text and the user corrects the first error. The Viterbi decoding is then run again, but this time using the assumption that everything occurring before the correction is correct, and thus reusing the computation up to that point. They have also explored slight variations of the same approach that enable more fluent user input with a touchpad\cite{Toselli2008}, mouse\cite{Toselli2009}, or multimodal means\cite{Toselli2010} which speed up the transcription process by allowing more intuitive user interaction (Fig.~\ref{fig:Toselli_multimodalCAT}). Their approach relies on a language model to make corrections on a line when a supervision is made. This means the cannot be used to effectively transcribe documents containing non-sentence writing, such as tables and lists, with this method. Serrano, et al also have pursued a similar approach, where the user corrects the $n$ words in which the recognition model had the least confidence\cite{Serrano2014}.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=0.95\textwidth]{Toselli_multimodalCAT}
     \caption{A screenshot of a demo of Toselli et al's multimodal CAT system. The red line is drawn by the user to indicate the need to insert a word into the automatically obtained transcription.}
@@ -172,7 +172,7 @@ While it is useful to employ an automatic handwriting recognition method as part
 
 Robert Clawson\cite{Clawson2014}\footnote{You can view a short demo and explanation of his approach at \url{https://www.youtube.com/watch?v=gqdVzEPnBEw}} designed a CAT system for handwritten tabular documents, which have a clear pattern. His approach relied on simply finding matches in the document column of the current word image and assigning them the same user-specified label, as seen in Fig.~\ref{fig:ii}. This provides an accurate CAT system where the user oversees all transcription. The user oversight of matches was accomplished by showing a list of matches to the user (with an adjustable threshold for sensitivity) from which the user removed the false-positive matches. This leveraged the human user's natural ability to discriminate. However, the approach as a whole is limited as it requires frequent word repetition to be effective. While some tabular documents have this, it is not true for most other documents. Additionally, this method required a very computation preprocessing stage in which a similarity score of all words in a column with all other words in the column had to be computed.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \begin{subfigure}[t]{0.46\textwidth}
     		\centering
@@ -189,14 +189,14 @@ Robert Clawson\cite{Clawson2014}\footnote{You can view a short demo and explanat
     	\label{fig:ii}
 \end{figure}
 
-%TODO: "A framework" also provides a similar method.?
-TODO: "A Framework for Efficient Transcription of Historical Documents Using Keyword Spotting"
+%"A Framework for Efficient Transcription of Historical Documents Using Keyword Spotting"
+Zagoris et al\cite{Zagoris2015}\footnote{A demo of their system is found at \url{http://vc.ee.duth.gr/ws/}} presented a CAT system that was also based on word spotting. In their system when the user is transcribing a word image, they are presented with the results of spotting that image (sorted according to rank). The user can then confirm these spottings by clicking them, moving them to a separate list. When this is done, a relevance feedback loop kicks in which submits another word spotting query of the confirmed image. These results are fused into the ranked list providing a better selection. The description of the system is unclear, but we believe the list of confirmed spottings are then labelled the same as the current word image.
 
 Neudecker and Tzadok\cite{Neudecker2010} presented a CAT system for historical printed documents which is very similar to the CAT system we are presenting here. The system would first segment the individual characters of the documents and run an OCR engine on them. Those characters with low confidence would then be presented to a user for verification in a character session. A single character session contains all the low-confidence character images classified to a single character. An example of their system's character session for the character ``?'' is given in Fig.~\ref{fig:carpet}.  The user merely needs to select the incorrect classifications. Then in a word session, a word image is shown to the user with possible transcriptions for the word, from which they select the correct one. There are three key strengths of this system. One is that as long as the document’s characters can be segmented, it can work. The second is that it formats all user tasks as selections, rather than typing, and they are quickly completed. This creates a much more enjoyable experience for the user. The third key strength is that it is highly parallelizable for crowd-sourced transcribing. This parallelism is achieved as all character sessions are independent of one another and all word sessions are independent of one another. Our system will follow this methods pattern so it has flexibility of document types, simple user tasks and a parallelizable framework.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
-    \includegraphics[width=.98\textwidth]{carpet}
+    \includegraphics[width=.9\textwidth]{carpet}
     \caption{A screen shot of a character session for ``?'' from Neudecker and Tzadok's CAT system, taken directly from their report \cite{Neudecker2010}. Notice how easy it is for a user to simply click on the erroneous classifications.}
     \label{fig:carpet}
 \end{figure}
@@ -253,8 +253,9 @@ We will begin by training our spotting method so that it can spot n-grams in mos
 
 The system is broken into tasks, some of which are completed by the users, some of which are completed by a server doing the computation/spotting. By including a task manager which distributes tasks, we can allow for multiple users to be working on the same set of documents simultaneously. See Fig.~\ref{fig:system_diagram} for a brief outline of the work-flow. The tasks comprising the work done by the computation server and the user will be the following subsections.
 
-This method is unique as the different user's progress will help produce more tasks, making the effort very cooperative. This happens as each completed n-gram verification task will provide partial transcriptions for words in the corpus. This allows more possible complete word transcriptions to be found. Each spotting and full word transcription that is done provides more n-gram image examples to the system from which it can improve spotting, creating more tasks for the server and then other users. This incremental learning from new n-gram example images can be done in two ways: using them as new image exemplars for queries directly or attempt to learn features from them to improve following queries. Additionally, we can use them as a refining tool to prune images returned by previous spotting tasks (that haven't been user-reviewed yet). This acts similarly to the relevance feedback of Zagoris et al\cite{Zagoris2015}, though it is all done online as part of the same spotting process.
+This method is unique as the different user's progress will help produce more tasks, making the effort very cooperative. This happens as each completed n-gram verification task will provide partial transcriptions for words in the corpus. This allows more possible complete word transcriptions to be found. Each spotting and full word transcription that is done provides more n-gram image examples to the system from which it can improve spotting, creating more tasks for the server and then other users. This incremental learning from new n-gram example images can be done in two ways: using them as new image exemplars for queries directly or attempt to learn features from them to improve following queries. Additionally, we can use them as a refining tool to prune images returned by previous spotting tasks (that haven't been user-reviewed yet). This acts similarly to the relevance feedback of Zagoris et al\cite{Zagoris2015}.
 
+\iffalse
 [Active Learning.TODO]
 Motivations:
 What do we want?
@@ -275,17 +276,17 @@ What can we learn? (globally and locally adjusted to particular corpi/documents)
 -learn reliability/speed of particular users (so we can give them high priority or difficult tasks)
 -learn user's state-of-mind
 	are they frustrated with the tasks they're doing? (or, how likely are they to quit?)
-	
+\fi	
 
 
 
 
 This prototype system will be developed as a in-browser app, thus making it immediately cross-compatible with all devices with a modern browser. A Node.js server will be created to communicate with the clients and the C++ program which will be responsible for performing the actual word spotting.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
-    \includegraphics[width=.98\textwidth]{flow}
-    \caption{The work-flow of the proposed CAT system. We show a portion of a document image as an example.}
+    \includegraphics[width=.95\textwidth]{flow6}
+    \caption{The work-flow of the proposed CAT system. (a) Server character n-gram spotting task. (b) Server n-gram verification distribution. Pools results from the previous task and disbibutes them to users as they become available. (c) User n-gram verification task. Passes it's results both forwards (towards transcription) and backwards (incremental learning and relevance feedback). (d) Server lexicon look-up and scoring task. A regular expression is generated from all currently spotted n-grams (``en'' and ``ed'' in this example). The regular expression generates a list of possible transcriptions and a word spotting algorithm scores each of these on the image. If the number of words above some threshold is small (black words), they are passed to a user. (e) User transcription selection task. (f) Extracting new n-gram exemplars which are used for incremental learning.}
     \label{fig:system_diagram}
 \end{figure}
 
@@ -305,7 +306,7 @@ Select the most promising n-gram exemplar to spot; this is based on the frequenc
 \begin{addmargin}[3em]{3em}
 This is closely related to the above task. It, however, additionally receives feedback from the users' n-gram verification task. As spotted images are returned labeled as true-positive or false-positive, we can refine the list of spottings waiting to be verified by users. Based on their similarity to an accepted or rejected image, spottings waiting for review will have their confidence adjusted. This will cause some to fall above or below the thresholds allowing the system to automatically decide they are a true- or false-positive, pruning the list.
 
-As users finish tasks, this distributes tasks based on whether they have pending feedback and whether that feedback will be useful. Suppose the system just spotted the bigram ``an'' and has three users completing the first n-gram verification tasks. It would be more valuable to assign some other task (not ``an'' verification) to a ready user; if we wait until the users doing the ``an'' tasks finish before assigning more, they will significantly prune the list of spottings to be verified, thus reducing possibly redundant work.
+As users finish tasks, this distributes new tasks based on whether a particular n-gram has pending feedback and whether that feedback will be useful. Suppose the system just spotted the bigram ``an'' and has three users completing the first n-gram verification tasks. It would be more valuable to assign some other task (not ``an'' verification) to a ready user; if we wait until the users doing the ``an'' tasks, their results will significantly prune the list of spottings to waiting be verified, thus reducing possibly redundant work.
 \\[.5cm]
 \end{addmargin}
 
@@ -321,7 +322,7 @@ When a word has roughly 20\% of its area labelled by n-grams, we create a regula
 \begin{addmargin}[3em]{3em}
 After the user has confirmed a transcription for a word image, we can then extract new character n-gram exemplars from the image, using the spatial information we have from the n-grams spotted in the image. Additionally, confirmed n-gram images we already spotted can be new exemplars. Both of these new exemplars can be author specific which will greatly improve spotting for pages with the same author. How the exemplar is used will depend on the final spotting algorithm selected; it may either be used directly as a query, to modify a query, or as means to learn new character models.
 
-Additionally, based on n-gram verification and transcription tasks, we can adjust the following parameters to better fit the documents being transcribed: the confidence threshold for automatically accepting or rejecting n-gram spottings and the threshold for automatically accepting a hypothesis transcription.
+Additionally, based on n-gram verification and transcription tasks, we can adjust the following parameters to better fit the documents being transcribed: the confidence threshold for automatically accepting or rejecting n-gram spottings and the threshold for automatically accepting a hypothesis transcription based on the its word spotting score.
 \\[.5cm]
 \end{addmargin}
 }
@@ -341,7 +342,7 @@ The user is shown segments of the image where the spotted n-grams are highlighte
 \\[.5cm]
 \end{addmargin}
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=.4\textwidth]{userTask_spot}
     \caption{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.}
@@ -362,7 +363,7 @@ The word being transcribed highlighted and is presented to the user with the lis
 \end{addmargin}
 }
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=.6\textwidth]{userTask_trans}
     \caption{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.}
@@ -383,7 +384,7 @@ We have begun testing state-of-the-art word spotting methods under the applicati
 \subsubsection{System Simulation}
 In an attempt to justify our method, we created a simulation to find how many tasks would need to be completed by users if we were transcribing a given corpus. This simulation takes a number of parameters: a recall rate for an imaginary subword spotting method, a rough confidence level for counting the number of unrecognized characters in a word, and a cut off for the number of possible transcriptions a word must be narrowed to before counting the word as transcribed. The real system would send a transcription selection task to the user, but we don't feel the need to simulate this. We ignore the precision of our imaginary spotting method as all spotting is verified by the user, so given no user error, it will have 100\% precision. However, the recall of the system will be balanced with how much work the user has to do in these tasks; this is important in our selection/development of a subword spotting method, but not to our simulation.
 
-We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, based on the mAP mentioned in the previous section (this should correspond to an acceptably high accuracy rate give 64\% mAP). The results presented here are from a simulated transcription of the 20-page George Washington dataset. We used a 32,000 word lexicon and spotted only the 100 most frequent bigrams.
+We have held the possible transcription cut off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 49\%, as this should correspond to an acceptably high accuracy rate give 64\% mAP. The results presented here are from a simulated transcription of the 20-page George Washington dataset. We used a 32,000 word lexicon and spotted only the 100 most frequent bigrams.
 
 %To solidify our description of our transcription system, let us examine a very specific example of how our system would transcribe a word, ``there,'' in the corpus and how the simulation represents this. The word ``there'' occurs 15 times in the GW corpus. The bigram ``\texttt{th}'' being the most common in the English language would be the first one spotted. We are presuming that our spotting method has 49\% recall. The system would spot roughly 7 of the ``th''s in the ``there''s of the corpus, along with other ``th''s in other words and false positives. We simulate this at each ``th'' by having a 49\% change of ``spotting'' the ``th''. In the real system, the spotted ``th''s are presented to a user to clean out the false positives. In our simulation, we assume this is done and there are no false positives. Having ``th'' spotted at the beginning of a word ``there'' would allow us to create the regular expression \texttt{{\textasciicircum}th....?\$} (the extra \texttt{.?} to represent uncertainty about the number of characters present in the word) for each of these instances, which will return 60 different transcriptions from the lexicon. This is too many to present to a user so we continue spotting. The fourth bigram that would be spotted is ``\texttt{er}.'' Let us say the ``er'' is spotted in 4 of the ``there''s we've spotted ``th''s in, allowing us to create the regular expression \texttt{{\textasciicircum}ther..?\$} for them. This returns only the words ``there'' and ``there's'' (let's assume the lexicon is striped of non-word characters) and so we can transcribe these 4 words by simply presenting the two options to the user and having him/her select the correct transcription. We can use the ``th''s and ``er''s we did spot correctly for create new queries for subsequent spotting iterations, which may catch the ``th''s or ``er''s we missed previously. Additionally, we can extract  ``re'' examples from the ``there''s we have transcribed, by estimating their location, based on the location of the ``er''s we spotted.
 
@@ -422,7 +423,7 @@ We will be able to measure success if the users report that system being enjoyab
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Thesis Schedule}
-\begin{table}[H]
+\begin{table}
 \centering
 \begin{tabular}{ll}
 Finalization of spotting method          & 1 March 2016 \\
