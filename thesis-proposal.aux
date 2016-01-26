@@ -20,10 +20,10 @@
 \citation{icdarComp2015}
 \citation{icdar_segmentation2013}
 \citation{icdar_segmentation2013}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces These are two words with a handful of letters left out. It is not hard to guess the correct words, especially if told these are names. A computer, with access to a lexicon, can be far more effective at this guessing game than a human.\relax }}{1}{figure.caption.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:wheel_of_fortune_example}{{1}{1}{These are two words with a handful of letters left out. It is not hard to guess the correct words, especially if told these are names. A computer, with access to a lexicon, can be far more effective at this guessing game than a human.\relax }{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
 \citation{sayres}
 \citation{sayres}
 \citation{Marti2001}
@@ -47,8 +47,8 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}}
 \citation{Clawson2014}
 \citation{Clawson2014}
-\citation{Neudecker2010}
-\citation{Neudecker2010}
+\citation{Zagoris2015}
+\citation{Zagoris2015}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A screenshot of a demo of Toselli et al's multimodal CAT system. The red line is drawn by the user to indicate the need to insert a word into the automatically obtained transcription.\relax }}{3}{figure.caption.2}}
 \newlabel{fig:Toselli_multimodalCAT}{{2}{3}{A screenshot of a demo of Toselli et al's multimodal CAT system. The red line is drawn by the user to indicate the need to insert a word into the automatically obtained transcription.\relax }{figure.caption.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Clawson's CAT system for tabular documents.\relax }}{3}{figure.caption.3}}
@@ -57,18 +57,20 @@
 \citation{Neudecker2010}
 \citation{Neudecker2010}
 \citation{Neudecker2010}
-\citation{Retsinas2015}
-\citation{Retsinas2015}
-\citation{Neudecker2010}
-\citation{Neudecker2010}
-\citation{Clawson2014}
-\citation{Clawson2014}
 \citation{Neudecker2010}
 \citation{Neudecker2010}
 \citation{Retsinas2015}
 \citation{Retsinas2015}
+\citation{Neudecker2010}
+\citation{Neudecker2010}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A screen shot of a character session for ``?'' from Neudecker and Tzadok's CAT system, taken directly from their report \cite  {Neudecker2010}. Notice how easy it is for a user to simply click on the erroneous classifications.\relax }}{4}{figure.caption.4}}
 \newlabel{fig:carpet}{{4}{4}{A screen shot of a character session for ``?'' from Neudecker and Tzadok's CAT system, taken directly from their report \cite {Neudecker2010}. Notice how easy it is for a user to simply click on the erroneous classifications.\relax }{figure.caption.4}{}}
+\citation{Clawson2014}
+\citation{Clawson2014}
+\citation{Neudecker2010}
+\citation{Neudecker2010}
+\citation{Retsinas2015}
+\citation{Retsinas2015}
 \citation{Rodrıguez2008}
 \citation{Rodrıguez2008}
 \citation{Rothacker2013}
@@ -98,31 +100,33 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Spotting}{6}{subsection.4.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Preprocessing}{6}{subsection.4.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Lexicon}{6}{subsection.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Tool}{6}{subsection.4.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The work-flow of the proposed CAT system. We show a portion of a document image as an example.\relax }}{7}{figure.caption.5}}
-\newlabel{fig:system_diagram}{{5}{7}{The work-flow of the proposed CAT system. We show a portion of a document image as an example.\relax }{figure.caption.5}{}}
+\citation{Zagoris2015}
+\citation{Zagoris2015}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Tool}{7}{subsection.4.4}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Computation Server Tasks}{7}{subsubsection.4.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The work-flow of the proposed CAT system. (a) Server character n-gram spotting task. (b) Server n-gram verification distribution. Pools results from the previous task and disbibutes them to users as they become available. (c) User n-gram verification task. Passes it's results both forwards (towards transcription) and backwards (incremental learning and relevance feedback). (d) Server lexicon look-up and scoring task. A regular expression is generated from all currently spotted n-grams (``en'' and ``ed'' in this example). The regular expression generates a list of possible transcriptions and a word spotting algorithm scores each of these on the image. If the number of words above some threshold is small (black words), they are passed to a user. (e) User transcription selection task. (f) Extracting new n-gram exemplars which are used for incremental learning.\relax }}{8}{figure.caption.5}}
+\newlabel{fig:system_diagram}{{5}{8}{The work-flow of the proposed CAT system. (a) Server character n-gram spotting task. (b) Server n-gram verification distribution. Pools results from the previous task and disbibutes them to users as they become available. (c) User n-gram verification task. Passes it's results both forwards (towards transcription) and backwards (incremental learning and relevance feedback). (d) Server lexicon look-up and scoring task. A regular expression is generated from all currently spotted n-grams (``en'' and ``ed'' in this example). The regular expression generates a list of possible transcriptions and a word spotting algorithm scores each of these on the image. If the number of words above some threshold is small (black words), they are passed to a user. (e) User transcription selection task. (f) Extracting new n-gram exemplars which are used for incremental learning.\relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}User Tasks}{9}{subsubsection.4.4.2}}
 \citation{GW}
 \citation{GW}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}User Tasks}{8}{subsubsection.4.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}An Example}{8}{subsection.4.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.\relax }}{10}{figure.caption.6}}
+\newlabel{fig:userTask_spot}{{6}{10}{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.\relax }{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}An Example}{10}{subsection.4.5}}
 \citation{Almazan2014}
 \citation{Almazan2014}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.\relax }}{9}{figure.caption.6}}
-\newlabel{fig:userTask_spot}{{6}{9}{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.\relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Preliminary Work}{9}{subsection.4.6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}Subword Spotting}{9}{subsubsection.4.6.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.\relax }}{10}{figure.caption.7}}
-\newlabel{fig:userTask_trans}{{7}{10}{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.\relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}System Simulation}{10}{subsubsection.4.6.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.\relax }}{11}{figure.caption.7}}
+\newlabel{fig:userTask_trans}{{7}{11}{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Preliminary Work}{11}{subsection.4.6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}Subword Spotting}{11}{subsubsection.4.6.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}System Simulation}{11}{subsubsection.4.6.2}}
 \citation{GW}
 \citation{GW}
 \citation{IAM}
 \citation{IAM}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the portion of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. An example of this diabolic case i the words ``suffice.'' We the only bigrams we spot present in the word are ``ic'' and ``ce'' and the number of seven letter words ending in ``ice'' is 17 for our dictionary, thus this word would never be ``transcribed'' in the simulation.\relax }}{11}{figure.caption.8}}
-\newlabel{fig:fullSim}{{8}{11}{A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the portion of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. An example of this diabolic case i the words ``suffice.'' We the only bigrams we spot present in the word are ``ic'' and ``ce'' and the number of seven letter words ending in ``ice'' is 17 for our dictionary, thus this word would never be ``transcribed'' in the simulation.\relax }{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Validation}{11}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}User Study}{11}{subsection.5.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Validation}{12}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}User Study}{12}{subsection.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the portion of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. An example of this diabolic case i the words ``suffice.'' We the only bigrams we spot present in the word are ``ic'' and ``ce'' and the number of seven letter words ending in ``ice'' is 17 for our dictionary, thus this word would never be ``transcribed'' in the simulation.\relax }}{13}{figure.caption.8}}
+\newlabel{fig:fullSim}{{8}{13}{A simulation run with medium confidence on unspotted character count prediction. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the portion of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. An example of this diabolic case i the words ``suffice.'' We the only bigrams we spot present in the word are ``ic'' and ``ce'' and the number of seven letter words ending in ``ice'' is 17 for our dictionary, thus this word would never be ``transcribed'' in the simulation.\relax }{figure.caption.8}{}}
 \citation{GW}
 \citation{GW}
 \citation{Smith}
@@ -130,9 +134,9 @@
 \bibstyle{plainnat}
 \bibdata{bib}
 \bibcite{Aldavert2015}{{1}{2015}{{Aldavert et~al.}}{{Aldavert, Rusi\={n}ol, Toledo, and Llad\'{o}s}}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Thesis Schedule}{12}{section.6}}
 \bibcite{Almazan2012}{{2}{2012}{{Almaz\'{a}n et~al.}}{{Almaz\'{a}n, Fern\'{a}ndez, Forn\'{e}s, Llados, and Valveny}}}
 \bibcite{Almazan2014}{{3}{2014}{{Almaz\'{a}n et~al.}}{{Almaz\'{a}n, Gordo, Forn\'{e}s, and Valveny}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Thesis Schedule}{14}{section.6}}
 \bibcite{Bunke2004}{{4}{2004}{{Bunke et~al.}}{{Bunke, Bengio, and Vinciarelli}}}
 \bibcite{Clawson2014}{{5}{2014}{{Clawson}}{{}}}
 \bibcite{Fischer2012}{{6}{2012}{{Fischer et~al.}}{{Fischer, Keller, Frinken, and Bunke}}}
@@ -155,3 +159,4 @@
 \bibcite{Toselli2010}{{23}{2010}{{Toselli et~al.}}{{Toselli, Romero, Pastor, , and Vidal}}}
 \bibcite{Toselli2008}{{24}{2008}{{Toselli et~al.}}{{Toselli, Romero, and Vidal}}}
 \bibcite{sayres}{{25}{2003}{{Vinciarelli}}{{}}}
+\bibcite{Zagoris2015}{{26}{2015}{{Zagoris et~al.}}{{Zagoris, Pratikakis, and Gatos}}}
