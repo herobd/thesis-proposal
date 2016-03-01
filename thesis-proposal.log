@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.6.10)  29 JAN 2016 17:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.6.10)  1 FEB 2016 17:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -360,7 +360,7 @@ LaTeX Info: Redefining \nameref on input line 117.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
-<./images/wheel_of_fortune_example.png, id=79, 289.08pt x 154.5775pt>
+<./images/wheel_of_fortune_example.png, id=91, 289.08pt x 154.5775pt>
 File: ./images/wheel_of_fortune_example.png Graphic file (type png)
 
 <use ./images/wheel_of_fortune_example.png>
@@ -377,7 +377,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 162.
 
-<./images/Toselli_multimodalCAT.png, id=101, 837.1275pt x 261.97874pt>
+<./images/Toselli_multimodalCAT.png, id=113, 837.1275pt x 261.97874pt>
 File: ./images/Toselli_multimodalCAT.png Graphic file (type png)
 
 <use ./images/Toselli_multimodalCAT.png>
@@ -390,14 +390,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 173.
 
-<./images/ii_ex_a.png, id=122, 219.26718pt x 152.92332pt>
+<./images/ii_ex_a.png, id=134, 219.26718pt x 152.92332pt>
 File: ./images/ii_ex_a.png Graphic file (type png)
 
 <use ./images/ii_ex_a.png>
 Package pdftex.def Info: ./images/ii_ex_a.png used on input line 179.
 (pdftex.def)             Requested size: 216.09045pt x 150.70618pt.
 
-<./images/ii_ex_b.png, id=123, 218.68903pt x 152.92332pt>
+<./images/ii_ex_b.png, id=135, 218.68903pt x 152.92332pt>
 File: ./images/ii_ex_b.png Graphic file (type png)
 
 <use ./images/ii_ex_b.png>
@@ -409,7 +409,7 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
 
-<./images/carpet.png, id=143, 337.7418pt x 218.2554pt>
+<./images/carpet.png, id=155, 337.7418pt x 218.2554pt>
 File: ./images/carpet.png Graphic file (type png)
 
 <use ./images/carpet.png>
@@ -424,7 +424,7 @@ File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 219.
- [5 <./images/carpet.png>] [6] <./images/flow6.png, id=195, 1220.27895pt x 722.
+ [5 <./images/carpet.png>] [6] <./images/flow6.png, id=207, 1220.27895pt x 722.
 7pt>
 File: ./images/flow6.png Graphic file (type png)
 
@@ -456,7 +456,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 343--345
 
  []
 
-<./images/userTask_spot.png, id=211, 831.105pt x 1228.59pt>
+<./images/userTask_spot.png, id=223, 831.105pt x 1228.59pt>
 File: ./images/userTask_spot.png Graphic file (type png)
 
 <use ./images/userTask_spot.png>
@@ -471,21 +471,21 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 359.
 
-<./images/userTask_trans.png, id=213, 1228.59pt x 831.105pt>
+<./images/userTask_trans.png, id=225, 1228.59pt x 831.105pt>
 File: ./images/userTask_trans.png Graphic file (type png)
 
 <use ./images/userTask_trans.png>
 Package pdftex.def Info: ./images/userTask_trans.png used on input line 370.
 (pdftex.def)             Requested size: 281.85587pt x 190.66823pt.
  [10 <./images/userTask_spot.png>]
-<./images/flow_ex.png, id=227, 642.4803pt x 435.7881pt>
+<./images/flow_ex.png, id=239, 642.4803pt x 435.7881pt>
 File: ./images/flow_ex.png Graphic file (type png)
 
 <use ./images/flow_ex.png>
 Package pdftex.def Info: ./images/flow_ex.png used on input line 383.
 (pdftex.def)             Requested size: 352.31625pt x 238.97267pt.
  [11 <./images/userTask_trans.png>]
-<./images/simulationGraph_big_line.png, id=239, 609.02531pt x 359.09157pt>
+<./images/simulationGraph_big_line.png, id=251, 609.02531pt x 359.09157pt>
 File: ./images/simulationGraph_big_line.png Graphic file (type png)
 
 <use ./images/simulationGraph_big_line.png>
@@ -506,15 +506,8 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 464.
  (./thesis-proposal.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 464.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 464.
-
-
-Package rerunfilecheck Warning: File `thesis-proposal.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis-proposal.out':
-(rerunfilecheck)             Before: 8DCF3A762041E838964B9A69FEC12861;948
-(rerunfilecheck)             After:  E6590462EECFAFD0117E137540279210;1105.
+Package rerunfilecheck Info: File `thesis-proposal.out' has not changed.
+(rerunfilecheck)             Checksum: E6590462EECFAFD0117E137540279210;1105.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 464.
  )
 (\end occurred inside a group at level 1)
@@ -522,10 +515,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 464.
 ### semi simple group (level 1) entered at line 462 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7837 strings out of 494989
- 121676 string characters out of 6180577
- 228957 words of memory out of 5000000
- 10896 multiletter control sequences out of 15000+600000
+ 7840 strings out of 494989
+ 121714 string characters out of 6180577
+ 228959 words of memory out of 5000000
+ 10899 multiletter control sequences out of 15000+600000
  8885 words of font info for 32 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  36i,8n,41p,2218b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -540,9 +533,9 @@ nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmtt9.pfb>
-Output written on thesis-proposal.pdf (20 pages, 4691671 bytes).
+Output written on thesis-proposal.pdf (20 pages, 4724550 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
+ 357 PDF objects out of 1000 (max. 8388607)
  80 named destinations out of 1000 (max. 500000)
- 179 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 203 words of extra memory for PDF output out of 10000 (max. 10000000)
 
