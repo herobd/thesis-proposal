@@ -109,20 +109,25 @@
 \@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.1.1}Character n-gram spotting}{7}{paragraph.4.4.1.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The work-flow of the proposed CAT system. (a) Server character n-gram spotting task. (b) Server n-gram verification distribution. Pools results from the previous task and distributes them to users as they become available. (c) User n-gram verification task. Passes it's results both forward (towards transcription) and backward (incremental learning and relevance feedback). (d) Server lexicon look-up and scoring task. A regular expression is generated from all currently spotted n-grams (``en'' and ``ed'' in this example). The regular expression generates a list of possible transcriptions and a word spotting/recognition algorithm scores each of these on the image. If the number of words above some threshold is small (black words), they are passed to a user. (e) User transcription selection task. (f) Extracting new n-gram exemplars which are used for incremental learning.\relax }}{8}{figure.caption.5}}
 \newlabel{fig:system_diagram}{{5}{8}{The work-flow of the proposed CAT system. (a) Server character n-gram spotting task. (b) Server n-gram verification distribution. Pools results from the previous task and distributes them to users as they become available. (c) User n-gram verification task. Passes it's results both forward (towards transcription) and backward (incremental learning and relevance feedback). (d) Server lexicon look-up and scoring task. A regular expression is generated from all currently spotted n-grams (``en'' and ``ed'' in this example). The regular expression generates a list of possible transcriptions and a word spotting/recognition algorithm scores each of these on the image. If the number of words above some threshold is small (black words), they are passed to a user. (e) User transcription selection task. (f) Extracting new n-gram exemplars which are used for incremental learning.\relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.1.2}Character n-gram verification distribution}{9}{paragraph.4.4.1.2}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.1.3}Lexicon look-up and scoring}{9}{paragraph.4.4.1.3}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.1.4}Incremental learning}{9}{paragraph.4.4.1.4}}
+\citation{GW}
+\citation{GW}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.\relax }}{10}{figure.caption.6}}
 \newlabel{fig:userTask_spot}{{6}{10}{A mock-up of what the user might see when verifying character n-gram spotting. The highlighted images are from the server spotting a particular n-gram. The red-boxed image has been selected by the user as it is a false-positive.\relax }{figure.caption.6}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}User Tasks}{10}{subsubsection.4.4.2}}
-\citation{GW}
-\citation{GW}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.2.1}Character n-gram verification}{10}{paragraph.4.4.2.1}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.2.2}Select correct transcription}{10}{paragraph.4.4.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}An Example}{10}{subsection.4.5}}
+\citation{Almazan2014}
+\citation{Almazan2014}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.\relax }}{11}{figure.caption.7}}
 \newlabel{fig:userTask_trans}{{7}{11}{A mock-up of what the user might see when selecting a correct transcription. The transcription possibilities are returned from the server's lexicon look-up.\relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}An Example}{11}{subsection.4.5}}
-\citation{Almazan2014}
-\citation{Almazan2014}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Preliminary Work}{11}{subsection.4.6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}Subword Spotting}{11}{subsubsection.4.6.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces An example of what the process of transcribing the word ``there'' might look like. (a) set of all ``there''s in the corpus. (b) ``there''s in which ``th'' was successfully spotted after spotting it in the corpus. (c) lexicon lookups for these words is not constrained enough yet. (d) ``there''s in which ``er'' and ``th'' were successfully spotted after spotting ``\texttt  {er}'' in the corpus. (e) lexicon lookups now return a short list a user could select the correct transcription from.\relax }}{12}{figure.caption.8}}
 \newlabel{fig:flow_ex}{{8}{12}{An example of what the process of transcribing the word ``there'' might look like. (a) set of all ``there''s in the corpus. (b) ``there''s in which ``th'' was successfully spotted after spotting it in the corpus. (c) lexicon lookups for these words is not constrained enough yet. (d) ``there''s in which ``er'' and ``th'' were successfully spotted after spotting ``\texttt {er}'' in the corpus. (e) lexicon lookups now return a short list a user could select the correct transcription from.\relax }{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Preliminary Work}{12}{subsection.4.6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}Subword Spotting}{12}{subsubsection.4.6.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}System Simulation}{12}{subsubsection.4.6.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces A simulation run with medium confidence in predicting the number of unspotted characters in a word. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the portion of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. An example of this diabolic case is the words ``suffice.'' The only bigrams we spot that are present in the word are ``ic'' and ``ce'' and the number of seven letter words ending in ``ice'' is 26 for our lexicon, thus this word would never be ``transcribed'' in the simulation.\relax }}{13}{figure.caption.9}}
 \newlabel{fig:fullSim}{{9}{13}{A simulation run with medium confidence in predicting the number of unspotted characters in a word. The chart is drawn so one can observe the progress of spotting as well as transcription, each category indicating the portion of words which have the given percent of their characters recognized by spottings (or indicating the portion of words transcribed). One will note that a large number of words never have more than 20\% of their characters spotted. This is due to two reasons: we are only using the 100 most frequent bigrams, and many of words in the corpus are numbers, which we are not spotting or transcribing in this simulation. The group of words which are between 40\% and 60\% spotted which are never transcribed are either out-of-vocabulary as well or are simply diabolic cases which have too many possible transcriptions given the limited number of bigrams we can spot. An example of this diabolic case is the words ``suffice.'' The only bigrams we spot that are present in the word are ``ic'' and ``ce'' and the number of seven letter words ending in ``ice'' is 26 for our lexicon, thus this word would never be ``transcribed'' in the simulation.\relax }{figure.caption.9}{}}
@@ -130,6 +135,8 @@
 \citation{GW}
 \citation{IAM}
 \citation{IAM}
+\citation{SUS}
+\citation{SUS}
 \citation{GW}
 \citation{GW}
 \citation{Smith}
@@ -141,27 +148,28 @@
 \bibcite{Aldavert2015}{{1}{2015}{{Aldavert et~al.}}{{Aldavert, Rusi\={n}ol, Toledo, and Llad\'{o}s}}}
 \bibcite{Almazan2012}{{2}{2012}{{Almaz\'{a}n et~al.}}{{Almaz\'{a}n, Fern\'{a}ndez, Forn\'{e}s, Llados, and Valveny}}}
 \bibcite{Almazan2014}{{3}{2014}{{Almaz\'{a}n et~al.}}{{Almaz\'{a}n, Gordo, Forn\'{e}s, and Valveny}}}
-\bibcite{Bunke2004}{{4}{2004}{{Bunke et~al.}}{{Bunke, Bengio, and Vinciarelli}}}
-\bibcite{Clawson2014}{{5}{2014}{{Clawson}}{{}}}
-\bibcite{Fischer2012}{{6}{2012}{{Fischer et~al.}}{{Fischer, Keller, Frinken, and Bunke}}}
-\bibcite{Graves2009hmm}{{7}{2009}{{Graves et~al.}}{{Graves, Liwicki, Fernandez, Bertolami, Bunke, and Schmidhuber}}}
+\bibcite{SUS}{{4}{1996}{{Brooke}}{{}}}
+\bibcite{Bunke2004}{{5}{2004}{{Bunke et~al.}}{{Bunke, Bengio, and Vinciarelli}}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Thesis Schedule}{15}{section.6}}
-\bibcite{Smith}{{8}{2011}{{Kennard et~al.}}{{Kennard, Barrett, and Sederberg}}}
-\bibcite{GW}{{9}{2004}{{Lavrenko et~al.}}{{Lavrenko, Rath, and Manmatha}}}
-\bibcite{IAM}{{10}{2002}{{Marti and Bunke}}{{}}}
-\bibcite{Marti2001}{{11}{2001}{{Marti and Bunke}}{{}}}
-\bibcite{Neudecker2010}{{12}{2010}{{Neudecker and Tzadok}}{{}}}
-\bibcite{Rath2003}{{13}{2003}{{Rath and Manmatha}}{{}}}
-\bibcite{Retsinas2015}{{14}{2015}{{Retsinas et~al.}}{{Retsinas, Gatos, Antonacopoulos, Louloudis, and Stamatopoulos}}}
-\bibcite{Rodrıguez2008}{{15}{2008}{{Rodr{\i }guez. and Perronnin}}{{}}}
-\bibcite{Toselli2009}{{16}{2009}{{Romero et~al.}}{{Romero, Toselli, Rodriguez, and Vidal}}}
-\bibcite{Rothacker2013}{{17}{2013}{{Rothacker et~al.}}{{Rothacker, Rusi{\~{n}ol}, and Fink}}}
-\bibcite{icdarComp2015}{{18}{2015}{{S\'{a}nchez et~al.}}{{S\'{a}nchez, Toselli, Romero, and Vidal}}}
-\bibcite{Serrano2010}{{19}{2010}{{Serrano et~al.}}{{Serrano, Gim{\'e}nez, Sanchis, and Juan}}}
-\bibcite{Serrano2014}{{20}{2014}{{Serrano et~al.}}{{Serrano, Gim\'{e}nez, Civera, Sanchis, and Juan}}}
-\bibcite{icdar_segmentation2013}{{21}{2013}{{Stamatopoulos et~al.}}{{Stamatopoulos, Gatos, Louloudis, Pal, and Alaei}}}
-\bibcite{Toselli2007}{{22}{2007}{{Toselli et~al.}}{{Toselli, Romero, Rodriguez, and Vidal}}}
-\bibcite{Toselli2010}{{23}{2010}{{Toselli et~al.}}{{Toselli, Romero, Pastor, , and Vidal}}}
-\bibcite{Toselli2008}{{24}{2008}{{Toselli et~al.}}{{Toselli, Romero, and Vidal}}}
-\bibcite{sayres}{{25}{2003}{{Vinciarelli}}{{}}}
-\bibcite{Zagoris2015}{{26}{2015}{{Zagoris et~al.}}{{Zagoris, Pratikakis, and Gatos}}}
+\bibcite{Clawson2014}{{6}{2014}{{Clawson}}{{}}}
+\bibcite{Fischer2012}{{7}{2012}{{Fischer et~al.}}{{Fischer, Keller, Frinken, and Bunke}}}
+\bibcite{Graves2009hmm}{{8}{2009}{{Graves et~al.}}{{Graves, Liwicki, Fernandez, Bertolami, Bunke, and Schmidhuber}}}
+\bibcite{Smith}{{9}{2011}{{Kennard et~al.}}{{Kennard, Barrett, and Sederberg}}}
+\bibcite{GW}{{10}{2004}{{Lavrenko et~al.}}{{Lavrenko, Rath, and Manmatha}}}
+\bibcite{IAM}{{11}{2002}{{Marti and Bunke}}{{}}}
+\bibcite{Marti2001}{{12}{2001}{{Marti and Bunke}}{{}}}
+\bibcite{Neudecker2010}{{13}{2010}{{Neudecker and Tzadok}}{{}}}
+\bibcite{Rath2003}{{14}{2003}{{Rath and Manmatha}}{{}}}
+\bibcite{Retsinas2015}{{15}{2015}{{Retsinas et~al.}}{{Retsinas, Gatos, Antonacopoulos, Louloudis, and Stamatopoulos}}}
+\bibcite{Rodrıguez2008}{{16}{2008}{{Rodr{\i }guez. and Perronnin}}{{}}}
+\bibcite{Toselli2009}{{17}{2009}{{Romero et~al.}}{{Romero, Toselli, Rodriguez, and Vidal}}}
+\bibcite{Rothacker2013}{{18}{2013}{{Rothacker et~al.}}{{Rothacker, Rusi{\~{n}ol}, and Fink}}}
+\bibcite{icdarComp2015}{{19}{2015}{{S\'{a}nchez et~al.}}{{S\'{a}nchez, Toselli, Romero, and Vidal}}}
+\bibcite{Serrano2010}{{20}{2010}{{Serrano et~al.}}{{Serrano, Gim{\'e}nez, Sanchis, and Juan}}}
+\bibcite{Serrano2014}{{21}{2014}{{Serrano et~al.}}{{Serrano, Gim\'{e}nez, Civera, Sanchis, and Juan}}}
+\bibcite{icdar_segmentation2013}{{22}{2013}{{Stamatopoulos et~al.}}{{Stamatopoulos, Gatos, Louloudis, Pal, and Alaei}}}
+\bibcite{Toselli2007}{{23}{2007}{{Toselli et~al.}}{{Toselli, Romero, Rodriguez, and Vidal}}}
+\bibcite{Toselli2010}{{24}{2010}{{Toselli et~al.}}{{Toselli, Romero, Pastor, , and Vidal}}}
+\bibcite{Toselli2008}{{25}{2008}{{Toselli et~al.}}{{Toselli, Romero, and Vidal}}}
+\bibcite{sayres}{{26}{2003}{{Vinciarelli}}{{}}}
+\bibcite{Zagoris2015}{{27}{2015}{{Zagoris et~al.}}{{Zagoris, Pratikakis, and Gatos}}}

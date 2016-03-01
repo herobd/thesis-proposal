@@ -299,39 +299,41 @@ This prototype system will be developed as an in-browser app, thus making it imm
 \subsubsection{Computation Server Tasks}
 
 %{\setlength{\parindent}{0cm}
-\paragraph{Character n-gram spotting}
+\paragraph{Character n-gram spotting} ~
 
 %\begin{addmargin}[3em]{3em}
 The program selects the most promising n-gram exemplar to spot; this is based on the frequency of n-grams and whether we have new information for an n-gram from document/author specific examples extracted from previously spotted or transcribed text. The selected n-gram is spotted in the documents. The spotting scores will be thresholded at a certain level for discarding negative. Another threshold will accept spottings as positive matches. The remaining results (medium confidence) will be reserved as unsure and incrementally distributed to users for n-gram verification.
-\\[.5cm]
+%\\[.5cm]
 %\end{addmargin}
 
-\textbf{Character n-gram verification distribution}
+\paragraph{Character n-gram verification distribution} ~
 
-\begin{addmargin}[3em]{3em}
-This is closely related to the above task. It, however, additionally receives feedback from the users' n-gram verification task. As spotted images are returned labeled as true-positive or false-positive, we can refine the list of spottings waiting to be verified by users. Based on their similarity to an accepted or rejected image, spottings waiting for review will have their confidence adjusted. Additionally, the thresholds used for that particular spotting may be adjusted. This will cause some spottings (yet to be reviewed) to now be above or below the threshold(s) allowing the system to automatically decide whether they are a true- or false-positive, thereby pruning the list (or possibly expanding the list, if the cut-off threshold was too high).
+%\begin{addmargin}[3em]{3em}
+This is closely related to the above task. It, however, additionally receives feedback from the users' n-gram verification task. Because spotted images are returned labeled as true-positive or false-positive, we can refine the list of spottings waiting to be verified by users. Based on their similarity to an accepted or rejected image, spottings waiting for review will have their confidence adjusted. Additionally, the thresholds used for that particular spotting may be adjusted. This will cause some spottings (yet to be reviewed) to now be above or below the threshold(s) allowing the system to automatically decide whether they are a true- or false-positive, thereby pruning the list (or possibly expanding the list, if the cut-off threshold was too high).
 
 
-\-\hspace{1cm} As users finish tasks, this distributes new tasks based on whether a particular n-gram has pending feedback and whether that feedback will be useful. Suppose the system just spotted the bigram ``an'' and has three users completing the first n-gram verification tasks. It would be more valuable to assign some other task (not ``an'' verification) to a ready user; if we wait until the users doing the ``an'' tasks are finished, their results will prune the list of spottings waiting to be verified, thus reducing possibly redundant work.
-\\[.5cm]
-\end{addmargin}
+%\-\hspace{1cm} 
+As users finish tasks, this distributes new tasks based on whether a particular n-gram has pending feedback and whether that feedback will be useful. Suppose the system just spotted the bigram ``an'' and has three users completing the first n-gram verification tasks. It would be more valuable to assign some other task (not ``an'' verification) to a ready user; if we wait until the users doing the ``an'' tasks are finished, their results will prune the list of spottings waiting to be verified, thus reducing possibly redundant work.
+%\\[.5cm]
+%\end{addmargin}
 
-\textbf{Lexicon look-up and scoring}
+\paragraph{Lexicon look-up and scoring} ~
 
-\begin{addmargin}[3em]{3em}
+%\begin{addmargin}[3em]{3em}
 When a word has roughly 20\% of its area labelled by n-grams, we create a regular expression representing what we know. This is based on the position of the n-grams in the word, using flexible wildcards to specify possible unrecognized characters and their position which we estimate from the image (the ``Wheel of Fortune'' game). If the list of returned words is small (perhaps less than 40), we performing a scoring of them by running a word spotting or handwriting recognition algorithm on the word image scoring for each of the possible transcriptions. We can then discard any possible transcriptions scoring below a threshold. This threshold can be adaptive to the distribution of the particular set of scores. If few words are above the threshold (10 or less) we pass this to the user for the transcription selection task (where the user selects the correct transcription from the returned words). If only one word is returned, either from the initial look-up or from the score pruning, we can transcribe the word without human intervention.
-\\[.5cm]
-\end{addmargin}
+%\\[.5cm]
+%\end{addmargin}
 
-\textbf{Incremental learning}
+\paragraph{Incremental learning} ~
 
-\begin{addmargin}[3em]{3em}
+%\begin{addmargin}[3em]{3em}
 After the user has confirmed a transcription for a word image, we can then extract new character n-gram exemplars from the image, using the spatial information we have from the n-grams spotted in the image. Additionally, confirmed n-gram images we already spotted can be new exemplars. Both of these new exemplars can be author specific which will greatly improve spotting for pages with the same author. How the exemplar is used will depend on the final spotting algorithm selected; it may either be used directly as a query, to modify a query, or as means to learn new character models.
 
 
-\-\hspace{1cm} Additionally, based on n-gram verification and transcription tasks, we can adjust the following parameters to better fit the documents being transcribed: the confidence threshold for automatically accepting or rejecting n-gram spottings and the threshold for automatically accepting a hypothesis transcription based on the its word spotting score.
-\\[.5cm]
-\end{addmargin}
+%\-\hspace{1cm} 
+Additionally, based on n-gram verification and transcription tasks, we can adjust the following parameters to better fit the documents being transcribed: the confidence threshold for automatically accepting or rejecting n-gram spottings and the threshold for automatically accepting a hypothesis transcription based on the its word spotting score.
+%\\[.5cm]
+%\end{addmargin}
 
 
 
@@ -341,13 +343,13 @@ After the user has confirmed a transcription for a word image, we can then extra
 
 
 
-{\setlength{\parindent}{0cm}
-\textbf{Character n-gram verification} (Fig.~\ref{fig:userTask_spot})
+%{\setlength{\parindent}{0cm}
+\paragraph{Character n-gram verification} (Fig.~\ref{fig:userTask_spot})
 
-\begin{addmargin}[3em]{3em}
+%\begin{addmargin}[3em]{3em}
 The user is shown segments of the image where the spotted n-grams are highlighted. The user selects any false-positives. The assumption is that most should be correct, thus making it easy to pick out those not belonging to the set.
-\\[.5cm]
-\end{addmargin}
+%\\[.5cm]
+%\end{addmargin}
 
 \begin{figure}
     \centering
@@ -356,9 +358,9 @@ The user is shown segments of the image where the spotted n-grams are highlighte
     \label{fig:userTask_spot}
 \end{figure}
 
-\textbf{Select correct transcription} (Fig.~\ref{fig:userTask_trans})
+\paragraph{Select correct transcription} (Fig.~\ref{fig:userTask_trans})
 
-\begin{addmargin}[3em]{3em}
+%\begin{addmargin}[3em]{3em}
 The word being transcribed is highlighted and is presented to the user with the list of possible transcriptions (ordered by the likelihood of the possible transcriptions and the score generated from word spotting the image). The user either selects the correct transcription, or corrects the search by doing one or more of the following:
 \begin{itemize}
     \item Splitting the image into two words.
@@ -367,8 +369,8 @@ The word being transcribed is highlighted and is presented to the user with the 
     \item Manually entering the transcription.
 \end{itemize}
 
-\end{addmargin}
-}
+%\end{addmargin}
+%}
 
 \begin{figure}
     \centering
@@ -407,7 +409,7 @@ In an attempt to justify our method, we created a simulation to discover how man
 %In Fig.~\ref{fig:fullSim} we can see the progress of the simulation through the series of tasks. As might be expected, the rate of transcription begins to drop off as most of the words are transcribed. It will be necessary to stop transcription through n-gram completion at some point and do manual transcription for the remaining words. However, this demonstrates the feasibility of our method. Within 250 spottings, 75\% of the corpus is transcribed (including out-of-vocabulary words).
 
 %TODO lookup if 10 is a good number
-We have held the possible transcription cut-off at 10, as we feel that is a reasonable number for a user to deal with. We used a recall rate of 50\%, as this should correspond to an acceptably high accuracy rate give 64\% mAP. The results presented here are from a simulated transcription of the 20-page George Washington dataset. We used a lexicon of 108,028 words and 6,939 names and spotted only the 100 most frequent bigrams.
+We have held the possible transcription cut-off at 10, because we feel that is a reasonable number for a user to deal with. We used a recall rate of 50\%, because this should correspond to an acceptably high accuracy rate give 64\% mAP. The results presented here are from a simulated transcription of the 20-page George Washington dataset. We used a lexicon of 108,028 words and 6,939 names and spotted only the 100 most frequent bigrams.
 
 
 In Fig.~\ref{fig:fullSim} we can see the progress of the simulation through the series of tasks. As might be expected, the rate of transcription begins to drop off as most of the words are transcribed. It will be necessary to stop transcription through n-gram completion at some point and do manual transcription for the remaining words. However, this demonstrates the feasibility of our method. Within 250 spottings, 73\% of the corpus is transcribed (including out-of-vocabulary words).
@@ -419,28 +421,30 @@ In Fig.~\ref{fig:fullSim} we can see the progress of the simulation through the 
     \label{fig:fullSim}
 \end{figure}
 
-A parameter our simulation is very sensitive to, which we assume the actual system will be sensitive to as well, is the confidence in predicting the number of characters in a word which are not spotted. If given a low confidence, such that the simulation searched more possible transcriptions, the simulation saturated transcription at around 66\% transcribed at 350 iterations (spottings) and failed to move past 71\% by 1000 iterations. If given perfect knowledge of how many characters are present, but not spotted, the system achieves 66\% after only 127 iterations and does not saturate until about 86\% has been transcribed. From further analysis, we see that it is caused by many words being transcribed as much as they can be (given the limited n-gram set), but still not returning a possible transcription count below the threshold of 10. If the prediction of the number of unspotted characters proves to be difficult, a loosening of this threshold as the corpus is transcribed may be required.
+Our simulation is very sensitive to the confidence in predicting the number of characters in a word that are not spotted. If given a low confidence, such that the simulation searched more possible transcriptions, the simulation saturated transcription at around 66\% transcribed at 350 iterations (spottings) and failed to move past 71\% by 1000 iterations. If given perfect knowledge of how many characters are present, but not spotted, the system achieves 66\% after only 127 iterations and does not saturate until about 86\% has been transcribed. From further analysis, we see that this is caused by many words being transcribed as much as they can be (given the limited n-gram set), but still not returning a possible transcription count below the threshold of 10. If the prediction of the number of unspotted characters proves to be difficult, a loosening of this threshold as the corpus is transcribed may be required.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Validation}
-The n-gram spotting methods will be empirically tested using well known datasets (George Washington \cite{GW} and IAM \cite{IAM}) as well as a dataset closer to the domain of our expected application of the transcription method.
+The n-gram spotting methods will be empirically tested using well known datasets (George Washington \cite{GW} and IAM \cite{IAM}) as well as a dataset closer to the domain of our expected application of the transcription method, such as the 1930 U.S.~census record
 
 \subsection{User Study}
 
-Our CAT system must be validated with a user study as it's goal is to be a more effective crowdsourcing method for transcription. It is not purely intended to be faster (indeed, it may not be faster than other computer assisted transcription methods), but more modular, allowing for work to be broken up into smaller pieces, and more enjoyable to use. It clearly achieves modularity in design, but we want to see how fast it is and get user feedback to see if it is something people would enjoy using.
+Our CAT system must be validated with a user study as its goal is to be a more effective crowdsourcing method for transcription. It is not purely intended to be faster (indeed, it may not be faster than other computer assisted transcription methods), but more modular, allowing for work to be broken up into smaller pieces, and more enjoyable to use. It clearly achieves modularity in design, but we want to see how fast it is and get user feedback to see if it is something people would enjoy using.
+As part of the development process, we will perform small formative studies to receive incremental user feedback to ensure design choices support this.
 
-Most other computer assisted transcription methods rely on a more fully automated transcription upfront and report performance measures in terms of word error rate or effort reduction, which are measures of how many words the user had to correct. While our users will primarily be doing corrections as well, they will very different types of corrections, that is, merely rejecting bad n-gram spottings instead of typing new transcriptions. Thus it would be difficult to compare these other methods to our proposed method using the previous authors' metrics, though they still may prove to be useful.
+Most other computer assisted transcription methods rely on a more fully automated transcription upfront and report performance measures in terms of word error rate or effort reduction, which are measures of how many words the user had to correct. While our users will primarily be doing corrections as well, they will be very different types of corrections, that is, merely rejecting bad n-gram spottings instead of typing new transcriptions. Thus it would be difficult to compare these other methods to our proposed method using the previous authors' metrics, though they still may prove to be useful. Our primary standard for effectiveness will be the total amount of user time needed to complete the transcription of some number of pages. This should allow a more universal comparison.
 
-We propose doing a user study which would involve having a volunteer\footnote{Recruiting volunteers can be aided by using Robert Clawson's volunteer testers list as a starting place. The rest will be gathered via on-campus flyers and personal connections.} use the system for about 5-10 minutes on their own device at their own convenience. This is probably the easiest way to get a large number of participants and a varying degree of experience transcribing documents among the volunteers. To encourage use on more platforms, so that we get a broader survey, the study will encourage users to use tablets and phones.
-We will track what device they use, how many tasks they complete, how long it takes them to complete tasks, and errors they make, in addition to having the volunteers complete a short survey about their experience.
+We propose doing a summative user study that involves having a volunteer\footnote{Recruiting volunteers can be aided by using Robert Clawson's volunteer testers list as a starting place. The rest will be gathered via on-campus flyers and personal connections.} use the system for about 5-10 minutes on their own device at their own convenience. This is probably the easiest way to get a large number of participants and a varying degree of experience transcribing documents among the volunteers. To encourage use on more platforms, so that we get a broader survey, the study will encourage users to use tablets and phones.
+We will track what device they use, how many tasks they complete, how long it takes them to complete tasks, and errors they make, in addition to having the volunteers complete a survey so we can evaluate the System Usability Scale (SUS) \cite{SUS}. SUS is an standard to allow the usability of this system to be compared to others, though it is not currently employed in most other CAT literature. Our hope is that other researchers may begin to use this standard in the future. We will extrapolate from the data the total amount of user time that is needed to transcribe a given corpus.
 
-Given the flexibility of the system, we would like to test it on two different document types: a regular written text like the George Washington \cite{GW} or the Jennie Leavitt Smith \cite{Smith} dataset, and a structured dataset such as census or marriage records. This will provide us with some comparison to Toselli's CAT approaches (which work on corpora similar to the George Washington dataset) and Clawson's CAT (which works on tabular documents).
+Given the flexibility of the system, we would like to test it on two different document types: a regular written text like the George Washington \cite{GW} or the Jennie Leavitt Smith \cite{Smith} dataset, and a structured dataset such as census or marriage records. This will provide us with some comparison to the CAT approaches of Toselli and Zagoris et al~(which work on corpora similar to the George Washington dataset) and Clawson's CAT (which works on tabular documents).
 
 It will be difficult to get a synchronized group of testers to explore the parallel nature of our method. Instead, we will complete a number of spotting verification tasks, and possibly transcription selection tasks, prior to having the users begin. These can then be fed to the system during a user test to simulate having other users on the system, although it may suffice to simply feed them the the system prior to the user interacting.
 
 We will be able to measure success if the users report that system being enjoyable to use and the system works accurately (near manual transcription's accuracy). Additionally, it would be a failure if the system proves slower than manual transcription.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
