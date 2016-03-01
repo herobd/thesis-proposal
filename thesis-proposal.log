@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.16)  1 MAR 2016 05:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.16)  1 MAR 2016 05:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -503,30 +503,21 @@ File: ./images/userTask_trans.png Graphic file (type png)
 Package pdftex.def Info: ./images/userTask_trans.png used on input line 375.
 (pdftex.def)             Requested size: 281.85587pt x 190.66823pt.
 
+<./images/flow_ex.png, id=250, 642.4803pt x 435.7881pt>
+File: ./images/flow_ex.png Graphic file (type png)
 
-! LaTeX Error: File `flow_ex' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.388 ...udegraphics[width=.75\textwidth]{flow_ex}
-                                                  
-I could not locate the file with any of these extensions:
-.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[11 <./images/userTask_trans.png>]
-<./images/simulationGraph_big_line.png, id=261, 609.02531pt x 359.09157pt>
+<use ./images/flow_ex.png>
+Package pdftex.def Info: ./images/flow_ex.png used on input line 388.
+(pdftex.def)             Requested size: 352.31625pt x 238.97267pt.
+ [11 <./images/userTask_trans.png>] [12 <./images/flow_ex.png>]
+<./images/simulationGraph_big_line.png, id=267, 609.02531pt x 359.09157pt>
 File: ./images/simulationGraph_big_line.png Graphic file (type png)
 
 <use ./images/simulationGraph_big_line.png>
 Package pdftex.def Info: ./images/simulationGraph_big_line.png used on input li
 ne 417.
 (pdftex.def)             Requested size: 469.75502pt x 276.98354pt.
- [12] [13 <./images/simulationGraph_big_line.png>] [14] (./thesis-proposal.bbl 
-[15]
+ [13 <./images/simulationGraph_big_line.png>] [14] (./thesis-proposal.bbl [15]
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no “ in font cmr10!
@@ -548,13 +539,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 469.
 ### semi simple group (level 1) entered at line 467 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 8255 strings out of 494985
- 127806 string characters out of 6180356
- 238475 words of memory out of 5000000
- 11287 multiletter control sequences out of 15000+600000
+ 8247 strings out of 494985
+ 127855 string characters out of 6180356
+ 237475 words of memory out of 5000000
+ 11291 multiletter control sequences out of 15000+600000
  8885 words of font info for 32 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 36i,8n,41p,2219b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,8n,41p,2219b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
@@ -566,10 +557,10 @@ nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmtt9.pfb>
-Output written on thesis-proposal.pdf (20 pages, 4314417 bytes).
+Output written on thesis-proposal.pdf (20 pages, 4691097 bytes).
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
+ 370 PDF objects out of 1000 (max. 8388607)
  312 compressed objects within 4 object streams
  82 named destinations out of 1000 (max. 500000)
- 214 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
